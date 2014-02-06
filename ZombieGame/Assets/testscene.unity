@@ -213,6 +213,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 747878886}
   - 212: {fileID: 747878885}
+  - 50: {fileID: 747878889}
+  - 61: {fileID: 747878888}
+  - 114: {fileID: 747878887}
   m_Layer: 0
   m_Name: Cop
   m_TagString: Untagged
@@ -255,6 +258,43 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &747878887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747878884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a86a180d567241e48f2e58c09aebae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &747878888
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747878884}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.14999998, y: .99000001}
+  m_Center: {x: 0, y: 0}
+--- !u!50 &747878889
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747878884}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1001 &780573411
 Prefab:
   m_ObjectHideFlags: 0
@@ -304,6 +344,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 784044531}
   - 212: {fileID: 784044530}
+  - 114: {fileID: 784044534}
+  - 50: {fileID: 784044533}
+  - 61: {fileID: 784044532}
   m_Layer: 0
   m_Name: Flood
   m_TagString: Untagged
@@ -346,6 +389,51 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &784044532
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784044529}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.14999998, y: .99000001}
+  m_Center: {x: 0, y: 0}
+--- !u!50 &784044533
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784044529}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!114 &784044534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784044529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b97afa831f44716a0bfafdf225e8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  HP: 2
+  deadEnemy: {fileID: 0}
+  damagedEnemy: {fileID: 0}
+  deathClips: []
+  hundredPointsUI: {fileID: 0}
+  deathSpinMin: -100
+  deathSpinMax: 100
 --- !u!1 &920157278
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +445,7 @@ GameObject:
   - 212: {fileID: 920157281}
   - 50: {fileID: 920157280}
   - 61: {fileID: 920157279}
+  - 114: {fileID: 920157283}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -425,6 +514,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &920157283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920157278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c2f983499ea41c680e9284560e450e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  HP: 2
+  deadEnemy: {fileID: 0}
+  damagedEnemy: {fileID: 0}
+  deathClips: []
+  hundredPointsUI: {fileID: 0}
+  deathSpinMin: -100
+  deathSpinMax: 100
 --- !u!1 &1015991098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9931958577c2482182e67c111efb3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  HP: 2
+  deadEnemy: {fileID: 0}
+  damagedEnemy: {fileID: 0}
+  deathClips: []
+  hundredPointsUI: {fileID: 0}
+  deathSpinMin: -100
+  deathSpinMax: 100
 --- !u!61 &1742081662
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CopScript.cs" />
+     <Compile Include="Assets\FloodScript.cs" />
      <Compile Include="Assets\NurseScript.cs" />
      <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
      <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />

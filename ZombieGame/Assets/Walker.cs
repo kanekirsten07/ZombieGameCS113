@@ -22,21 +22,21 @@ public class Walker : MonoBehaviour {
 	void Awake()
 	{
 		// Setting up the references.
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
+		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
+		//frontCheck = transform.Find("frontCheck").transform;
+		//score = GameObject.Find("Score").GetComponent<Score>();
 	}
 	
 	void FixedUpdate ()
 	{
 		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+		Collider2D[] frontHits = Physics2D.OverlapPointAll(transform.position, 1);
 		
 		// Check each of the colliders.
 		foreach(Collider2D c in frontHits)
 		{
 			// If any of the colliders is an Obstacle...
-			if(c.tag == "Obstacle")
+			if(c.tag == "Player")
 			{
 				// ... Flip the enemy and stop checking the other colliders.
 				Flip ();

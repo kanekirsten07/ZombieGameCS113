@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Walker : MonoBehaviour {
-
+	
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
 	public int HP = 1;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
@@ -29,9 +29,9 @@ public class Walker : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
-
-
-
+		
+		
+		
 		
 		// Create an array of all the colliders in front of the enemy.
 		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
@@ -47,7 +47,8 @@ public class Walker : MonoBehaviour {
 				break;
 			}
 		}
-	*/		
+		*/
+		
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
 		

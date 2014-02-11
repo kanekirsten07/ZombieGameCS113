@@ -56,7 +56,7 @@ public class CopScript : MonoBehaviour {
 
 			canShoot = true;
 		}
-		walk();
+
 	}
 
 	void endTimer()
@@ -86,7 +86,7 @@ public class CopScript : MonoBehaviour {
 		
 		// Set the enemy's velocity to moveSpeed in the x direction.
 
-
+		walk();
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
@@ -104,9 +104,14 @@ public class CopScript : MonoBehaviour {
 		if(canShoot)
 		{
 
-		Debug.Log("Blech!");
-		Rigidbody vomit = Instantiate(vomitPrefab, transform.position, transform.rotation) as Rigidbody;
-			vomit.AddForce(new Vector3(0.0f, 0.0f, 0.0f));
+		
+			Debug.Log("Blech!");
+
+			 float spawnDistance = 2.0f; // don't want the bullet spawn in centre
+			
+			// ...   
+			GameObject.Instantiate(vomitPrefab, transform.position + spawnDistance * transform.forward, transform.rotation);
+
 
 			this.canShoot = false;
 

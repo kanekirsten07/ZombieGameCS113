@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class NurseScript : MonoBehaviour {
-
-	public float moveSpeed = 3f;		// The speed the enemy moves at.
+	
+	public float moveSpeed = 2f;		// The speed the enemy moves at.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
@@ -22,18 +22,22 @@ public class NurseScript : MonoBehaviour {
 	void Awake()
 	{
 		// Setting up the references.
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
+		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
+		//frontCheck = transform.Find("frontCheck").transform;
+		//score = GameObject.Find("Score").GetComponent<Score>();
 	}
 	
 	void FixedUpdate ()
 	{
+		
+		
+		
+		
 		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 		
 		// Check each of the colliders.
-		foreach(Collider2D c in frontHits)
+		/*foreach(Collider2D c in frontHits)
 		{
 			// If any of the colliders is an Obstacle...
 			if(c.tag == "Obstacle")
@@ -43,6 +47,7 @@ public class NurseScript : MonoBehaviour {
 				break;
 			}
 		}
+		*/
 		
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
@@ -63,9 +68,6 @@ public class NurseScript : MonoBehaviour {
 		// Reduce the number of hit points by one.
 		HP--;
 	}
-
-
-
 	void walk()
 	{
 		GameObject go = GameObject.FindGameObjectWithTag("Player");
@@ -129,8 +131,7 @@ public class NurseScript : MonoBehaviour {
 		// Instantiate the 100 points prefab at this point.
 		Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
 	}
-	
-	
+
 	public void Flip()
 	{
 		// Multiply the x component of localScale by -1.
@@ -139,3 +140,5 @@ public class NurseScript : MonoBehaviour {
 		transform.localScale = enemyScale;
 	}
 }
+
+	

@@ -38,13 +38,7 @@ public class CopScript : MonoBehaviour {
 		timer = 0;
 		isTiming = true;
 	}
-	void Awake()
-	{
-		// Setting up the references.
-		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		//frontCheck = transform.Find("frontCheck").transform;
-		//score = GameObject.Find("Score").GetComponent<Score>();
-	}
+
 	void Update()
 	{
 		if(isTiming)

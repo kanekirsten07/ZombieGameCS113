@@ -22,7 +22,7 @@ public class ZombiniController : MonoBehaviour {
 	{
 		float move = Input.GetAxis("Horizontal");
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
-
+		//Debug.Log(transform.position);
 
 		if(jump)
 		{

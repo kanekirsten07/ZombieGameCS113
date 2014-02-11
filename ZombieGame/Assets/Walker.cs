@@ -4,7 +4,7 @@ using System.Collections;
 public class Walker : MonoBehaviour {
 
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public int HP = 2;					// How many times the enemy can be hit before it dies.
+	public int HP = 1;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
@@ -29,23 +29,27 @@ public class Walker : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
+
+
+
+		
 		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(transform.position, 1);
+		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 		
 		// Check each of the colliders.
-		foreach(Collider2D c in frontHits)
+		/*foreach(Collider2D c in frontHits)
 		{
 			// If any of the colliders is an Obstacle...
-			if(c.tag == "Player")
+			if(c.tag == "Obstacle")
 			{
 				// ... Flip the enemy and stop checking the other colliders.
 				Flip ();
 				break;
 			}
 		}
-		
+	*/		
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		walk();
 		
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
@@ -62,6 +66,24 @@ public class Walker : MonoBehaviour {
 	{
 		// Reduce the number of hit points by one.
 		HP--;
+	}
+	void walk()
+	{
+		GameObject go = GameObject.FindGameObjectWithTag("Player");
+		Transform target = go.transform;
+		Vector2 walker = transform.position;
+		Vector2 player = target.position;
+		Debug.Log("Walker position:" +walker);
+		Debug.Log("Player Position: " +player);
+		
+		
+		if(walker[0] < player[0])
+		{
+			rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		}else
+		{
+			rigidbody2D.velocity = new Vector2(-transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		}
 	}
 	
 	void Death()

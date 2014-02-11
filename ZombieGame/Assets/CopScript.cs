@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class CopScript : MonoBehaviour {
 
-	public float moveSpeed = 2f;		// The speed the enemy moves at.
+	public float moveSpeed = 2.5f;		// The speed the enemy moves at.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
@@ -11,25 +13,62 @@ public class CopScript : MonoBehaviour {
 	public GameObject hundredPointsUI;	// A prefab of 100 that appears when the enemy dies.
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
-	
+	public float vomitSpeed = 1.0f;
+	public GameObject vomitPrefab;
+	private Transform vomitSpawn;
+	private double secstoWait = 10.0;
+	private double timer;
+	public bool canShoot = true;
+	public bool isTiming = false;
 	
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
-	
-	
+
+
+	void Start()
+	{
+		vomitSpawn = transform.Find("vomitSpawn");
+	}
+
+
+	void beginTimer()
+	{
+		timer = 0;
+		isTiming = true;
+	}
 	void Awake()
 	{
 		// Setting up the references.
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
+		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
+		//frontCheck = transform.Find("frontCheck").transform;
+		//score = GameObject.Find("Score").GetComponent<Score>();
 	}
-	
+	void Update()
+	{
+		if(isTiming)
+		{
+			timer += Time.deltaTime;
+		}
+		if(timer > secstoWait)
+		{
+
+			canShoot = true;
+		}
+		walk();
+	}
+
+	void endTimer()
+	{
+		isTiming = false;
+	}
 	void FixedUpdate ()
 	{
+
+
 		// Create an array of all the colliders in front of the enemy.
+		/*
 		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 		
 		// Check each of the colliders.
@@ -43,10 +82,11 @@ public class CopScript : MonoBehaviour {
 				break;
 			}
 		}
+		*/
 		
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
-		
+
+
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
@@ -56,6 +96,46 @@ public class CopScript : MonoBehaviour {
 		if(HP <= 0 && !dead)
 			// ... call the death function.
 			Death ();
+	}
+
+	private void projectilevomit()
+	{
+		//Aka throw a projectile
+		if(canShoot)
+		{
+
+		Debug.Log("Blech!");
+		Rigidbody vomit = Instantiate(vomitPrefab, transform.position, transform.rotation) as Rigidbody;
+			vomit.AddForce(new Vector3(0.0f, 0.0f, 0.0f));
+
+			this.canShoot = false;
+
+			beginTimer();
+		}
+
+	}
+
+	private void walk()
+	{
+		GameObject go = GameObject.FindGameObjectWithTag("Player");
+		Transform target = go.transform;
+		Vector2 walker = transform.position;
+		Vector2 player = target.position;
+		//Debug.Log("Walker position:" +walker);
+		//Debug.Log("Player Position: " +player);
+		
+		
+		if(walker[0] < player[0])
+		{
+			rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		}else
+		{
+			rigidbody2D.velocity = new Vector2(-transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		}
+
+
+			projectilevomit();
+
 	}
 	
 	public void Hurt()

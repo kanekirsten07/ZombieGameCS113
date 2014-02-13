@@ -17,20 +17,23 @@ public class FloodScript : MonoBehaviour {
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
-	
+
+	public bool facingRight ;
+	private float move = -1f;
 	
 	void Awake()
 	{
 		// Setting up the references.
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
+		/*ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
 		score = GameObject.Find("Score").GetComponent<Score>();
+		*/
 	}
 	
 	void FixedUpdate ()
 	{
 		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+		/*Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 		
 		// Check each of the colliders.
 		foreach(Collider2D c in frontHits)
@@ -42,10 +45,10 @@ public class FloodScript : MonoBehaviour {
 				Flip ();
 				break;
 			}
-		}
+		}*/
 		
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+		walk();
 		
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
@@ -62,6 +65,45 @@ public class FloodScript : MonoBehaviour {
 	{
 		// Reduce the number of hit points by one.
 		HP--;
+	}
+
+	void walk()
+	{
+		GameObject go = GameObject.FindGameObjectWithTag("Player");
+		Transform target = go.transform;
+		Vector2 walker = transform.position;
+		Vector2 player = target.position;
+		//Debug.Log("Walker position:" +walker);
+		//Debug.Log("Player Position: " +player);
+		
+		//Debug.Log(facingRight);
+		if(walker[0] < player[0])
+		{
+			
+			if(!facingRight)
+			{
+				
+				Flip ();
+				facingRight = true;
+				move = 1f;
+				
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);
+			
+			
+		}else
+		{
+			
+			if(facingRight)
+			{
+				Flip ();
+				facingRight = false;
+				move=-1f;
+				
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
+		}
+		
 	}
 	
 	void Death()

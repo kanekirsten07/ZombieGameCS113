@@ -17,7 +17,8 @@ public class NurseScript : MonoBehaviour {
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
-	
+	private float move = -1f;
+	public bool facingRight ;
 	
 	void Awake()
 	{
@@ -80,11 +81,31 @@ public class NurseScript : MonoBehaviour {
 		
 		if(walker[0] < player[0])
 		{
-			rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+			
+			if(!facingRight)
+			{
+				
+				Flip ();
+				facingRight = true;
+				move = 1f;
+				
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);
+			
+			
 		}else
 		{
-			rigidbody2D.velocity = new Vector2(-transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+			
+			if(facingRight)
+			{
+				Flip ();
+				facingRight = false;
+				move=-1f;
+				
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
 		}
+
 	}
 	
 	void Death()

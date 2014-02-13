@@ -11,14 +11,22 @@ public class Walker : MonoBehaviour {
 	public GameObject hundredPointsUI;	// A prefab of 100 that appears when the enemy dies.
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
-	
+	public bool facingRight ;
 	
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private Score score;				// Reference to the Score script.
+
+	private float move = -1f;
 	
-	
+
+	void Start()
+	{
+		facingRight = false;
+	}
+
+
 	void Awake()
 	{
 		// Setting up the references.
@@ -48,7 +56,7 @@ public class Walker : MonoBehaviour {
 			}
 		}
 		*/
-		
+
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
 		
@@ -74,17 +82,37 @@ public class Walker : MonoBehaviour {
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;
-		Debug.Log("Walker position:" +walker);
-		Debug.Log("Player Position: " +player);
+		//Debug.Log("Walker position:" +walker);
+		//Debug.Log("Player Position: " +player);
 		
-		
+		//Debug.Log(facingRight);
 		if(walker[0] < player[0])
 		{
-			rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+
+			if(!facingRight)
+			{
+
+				Flip ();
+				facingRight = true;
+				move = 1f;
+
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);
+
+
 		}else
 		{
-			rigidbody2D.velocity = new Vector2(-transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
+
+			if(facingRight)
+			{
+				Flip ();
+				facingRight = false;
+				move=-1f;
+			
+			}
+			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
 		}
+
 	}
 	
 	void Death()
@@ -136,8 +164,9 @@ public class Walker : MonoBehaviour {
 	public void Flip()
 	{
 		// Multiply the x component of localScale by -1.
-		Vector3 enemyScale = transform.localScale;
-		enemyScale.x *= -1;
-		transform.localScale = enemyScale;
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 }

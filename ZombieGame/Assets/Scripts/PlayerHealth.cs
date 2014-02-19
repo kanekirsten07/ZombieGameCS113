@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
-	private PlayerControl  playerControl;		// Reference to the PlayerControl script.
+
 	private ZombiniController ZombiniControl;
 	private Animator anim;						// Reference to the Animator on the player
 

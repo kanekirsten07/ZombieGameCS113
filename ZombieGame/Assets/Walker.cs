@@ -78,13 +78,15 @@ public class Walker : MonoBehaviour {
 	}
 	void walk()
 	{
-		GameObject go = GameObject.FindGameObjectWithTag("Player");
+		GameObject go = GameObject.FindGameObjectWithTag("Zombini");
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;
 		//Debug.Log("Walker position:" +walker);
-		//Debug.Log("Player Position: " +player);
-		
+		Debug.Log("Player Position: " +player);
+
+		//Debug.Log(walker[0]);
+		//Debug.Log(player[0]);
 		//Debug.Log(facingRight);
 		if(walker[0] < player[0])
 		{

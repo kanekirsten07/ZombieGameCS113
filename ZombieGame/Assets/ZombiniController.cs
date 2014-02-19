@@ -8,8 +8,11 @@ public class ZombiniController : MonoBehaviour {
 	private bool facingRight = true;
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public bool jump = false;				// Condition for whether the player should jump.
+	Animator anim;
 	void Start ()
 	{
+
+		anim = GetComponent<Animator>();
 	}
 
 	void Update ()
@@ -22,6 +25,7 @@ public class ZombiniController : MonoBehaviour {
 	{
 		float move = Input.GetAxis("Horizontal");
 		//Debug.Log(move);
+		anim.SetFloat("Speed", Mathf.Abs(move));
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 		//Debug.Log(transform.position);
 		// If the input is moving the player right and the player is facing left...
@@ -41,12 +45,14 @@ public class ZombiniController : MonoBehaviour {
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);
 			//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-			
+			anim.SetFloat("Jumpy", 1);
 			// Add a vertical force to the player.
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
+		}else{
+			anim.SetFloat("Jumpy", 0);
 		}
 	}
 

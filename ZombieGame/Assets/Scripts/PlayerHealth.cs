@@ -31,23 +31,28 @@ public class PlayerHealth : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
+		damageAmount = 0f;
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "Walker")
 		{
 
-			damageAmount = 5f;
-			Debug.Log("Boop");
+			damageAmount = 1f;
+			Debug.Log("Boop1");
 		}else if(col.gameObject.tag == "Nurse")
 		{
+			Debug.Log("Boop2");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Cop")
 		{
+			Debug.Log("Boop3");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Flood")
 		{
+			Debug.Log("Boop4");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Minion")
 		{
+			Debug.Log("Boo5");
 			damageAmount = 1f;
 		}
 			handleCollisionStuffs(col);
@@ -57,8 +62,9 @@ public class PlayerHealth : MonoBehaviour
 
 	void handleCollisionStuffs(Collision2D col)
 	{
-		if (Time.time > lastHitTime + repeatDamagePeriod) 
+		/*if (Time.time > lastHitTime + repeatDamagePeriod) 
 		{
+		*/
 			// ... and if the player still has health...
 			if(health > 0f)
 			{
@@ -92,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
 				// ... Trigger the 'Die' animation state
 				anim.SetTrigger("Die");
 			}
-		}
+		//}
 	}
 
 	void TakeDamage (Transform enemy)
@@ -104,7 +110,7 @@ public class PlayerHealth : MonoBehaviour
 		Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 5f;
 
 		// Add a force to the player in the direction of the vector and multiply by the hurtForce.
-		rigidbody2D.AddForce(hurtVector * hurtForce);
+		//rigidbody2D.AddForce(hurtVector * hurtForce);
 
 		// Reduce the player's health by 10.
 		health -= damageAmount;

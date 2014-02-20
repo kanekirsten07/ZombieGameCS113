@@ -9,16 +9,27 @@ public class ZombiniController : MonoBehaviour {
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public bool jump = false;				// Condition for whether the player should jump.
 	Animator anim;
+
+	private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	private bool grounded = false;			// Whether or not the player is grounded.
+	float groundRadius = 0.2f;
+	public LayerMask whatIsGround;
+
 	void Start ()
 	{
-
+		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
 	}
 
 	void Update ()
 	{
-		if(Input.GetButtonDown("Jump"))
+
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		anim.SetBool("Grounded", grounded);
+		if(Input.GetButtonDown("Jump")&& grounded)
+		{
 			jump = true;
+		}
 	}
 
 	void FixedUpdate()

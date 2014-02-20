@@ -50,7 +50,6 @@
      <Compile Include="Assets\exitGameScript.js" />
      <Compile Include="Assets\startOptionsScript.js" />
      <Compile Include="Assets\startStoryMode.js" />
-     <Compile Include="Assets\vomitmovement.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

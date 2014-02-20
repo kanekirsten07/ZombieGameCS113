@@ -71,7 +71,7 @@ public class NurseScript : MonoBehaviour {
 	}
 	void walk()
 	{
-		GameObject go = GameObject.FindGameObjectWithTag("Player");
+		GameObject go = GameObject.Find("Zombini");
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;

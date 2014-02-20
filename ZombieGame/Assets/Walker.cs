@@ -78,7 +78,7 @@ public class Walker : MonoBehaviour {
 	}
 	void walk()
 	{
-		GameObject go = GameObject.FindGameObjectWithTag("Zombini");
+		GameObject go = GameObject.Find("Zombini");
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;

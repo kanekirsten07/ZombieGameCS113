@@ -74,6 +74,7 @@
      <Compile Include="Assets\Walker.cs" />
      <Compile Include="Assets\ZombiniController.cs" />
      <Compile Include="Assets\vomitArc.cs" />
+     <Compile Include="Assets\zombieSpawnerScript.cs" />
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

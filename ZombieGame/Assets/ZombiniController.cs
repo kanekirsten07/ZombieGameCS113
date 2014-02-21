@@ -50,20 +50,17 @@ public class ZombiniController : MonoBehaviour {
 
 		if(jump)
 		{
-			// Set the Jump animator trigger parameter.
-			//anim.SetTrigger("Jump");
-			
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);
 			//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-			anim.SetFloat("Jumpy", 1);
+
 			// Add a vertical force to the player.
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}else{
-			anim.SetFloat("Jumpy", 0);
+
 		}
 	}
 

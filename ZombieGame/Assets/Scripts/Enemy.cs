@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-		//score = GameObject.Find("Score").GetComponent<Score>();
+		score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
 	void FixedUpdate ()
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 		foreach(Collider2D c in frontHits)
 		{
 			// If any of the colliders is an Obstacle...
-			if(c.tag == "Player")
+			if(c.tag == "Obstacle")
 			{
 				// ... Flip the enemy and stop checking the other colliders.
 				Flip ();

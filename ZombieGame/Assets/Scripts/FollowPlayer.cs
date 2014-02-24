@@ -11,7 +11,7 @@ public class FollowPlayer : MonoBehaviour
 	void Awake ()
 	{
 		// Setting up the reference.
-		player = GameObject.Find("Zombini").transform;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void Update ()

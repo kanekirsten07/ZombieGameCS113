@@ -5,11 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/MainMenu.unity
-  - enabled: 1
-    path: Assets/Survival.unity
-  - enabled: 0
-    path: Assets/MainMenu.unity
   - enabled: 0
     path: Assets/Scenes/Level.unity
+  - enabled: 1
+    path: Assets/MainMenu.unity
+  - enabled: 1
+    path: Assets/Options.unity
+  - enabled: 1
+    path: Assets/Survival.unity
+  - enabled: 1
+    path: Assets/Survival2.unity
+  - enabled: 1
+    path: Assets/Survival3.unity
+  - enabled: 1
+    path: Assets/Survival4.unity
+  - enabled: 1
+    path: Assets/Survival5.unity

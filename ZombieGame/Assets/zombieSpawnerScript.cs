@@ -1,25 +1,30 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class zombieSpawnerScript : MonoBehaviour {
 
 
-	private bool canSpawnZombie;
-	private double secstoWait = 5.0;
+	private bool canSpawnZombie = true;
+	private double secstoWait = 31;
 	GameObject spawner;
 	public bool isTiming = false;
+	public bool isTiming2 = false;
 	private double timer;
+	private double timer2;
 	public GameObject Walker;
 	public GameObject Nurse;
 	public GameObject Cop;
 	public GameObject Flood;
 	public GameObject Minion;
+	private double zombietimerdivision = 10;
 	Transform spawnPosition;
 	// Use this for initialization
 	void Start () {
 
 
-		spawnZombies();
+		beginTimer();
+		beginTimer2();
+		InvokeRepeating("evaluateCondishuns", 0, 1.0f);
 	}
 
 	void beginTimer()
@@ -27,19 +32,35 @@ public class zombieSpawnerScript : MonoBehaviour {
 		timer = 0;
 		isTiming = true;
 	}
+	void beginTimer2()
+	{
+		timer2 = 0;
+		isTiming2 = true;
+	}
 
 	// Update is called once per frame
 	void Update () {
 		if(isTiming)
 		{
 			timer += Time.deltaTime;
+			timer2 += Time.deltaTime;
+
 		}
 		if(timer > secstoWait)
 		{
 			
 			canSpawnZombie = true;
+			beginTimer();
+
+		}else if(timer2 > zombietimerdivision)
+		{
+			canSpawnZombie = false;
+			beginTimer2();
 		}
+
 	}
+
+
 
 	void evaluateCondishuns()
 	{
@@ -54,11 +75,14 @@ public class zombieSpawnerScript : MonoBehaviour {
 	{
 
 		 // don't want the bullet spawn in centre
+		Debug.Log("Spawn Zombie");
 		float spawnDistance = 2.0f;
 		 
 		Debug.Log("Spawner position:"+ transform.position);
 		// ...   
+
 		GameObject.Instantiate(Walker, transform.position + spawnDistance * transform.forward, transform.rotation);
+
 	}
 }
 	

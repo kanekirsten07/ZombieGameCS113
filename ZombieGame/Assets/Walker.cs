@@ -83,7 +83,7 @@ public class Walker : MonoBehaviour {
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;
 		//Debug.Log("Walker position:" +walker);
-		Debug.Log("Player Position: " +player);
+		//Debug.Log("Player Position: " +player);
 
 		//Debug.Log(walker[0]);
 		//Debug.Log(player[0]);

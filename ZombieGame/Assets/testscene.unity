@@ -259,7 +259,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 14.8041229
+      value: 10.8753433
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1369,7 +1369,7 @@ Transform:
   m_PrefabInternal: {fileID: 480631067}
   m_GameObject: {fileID: 1038732171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.84706974, y: 14.8041229, z: -10}
+  m_LocalPosition: {x: 3.84706974, y: 10.8753433, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1526,6 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTiming: 0
+  isTiming2: 0
   Walker: {fileID: 100000, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}
   Nurse: {fileID: 100000, guid: fa209c215dd204dd39bc8ddc953c53ef, type: 2}
   Cop: {fileID: 100000, guid: c92286d0b1b3a49b6a8ac825cd7562cc, type: 2}
@@ -1854,6 +1855,10 @@ Prefab:
     - target: {fileID: 100000, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}
+      propertyPath: m_TagString
+      value: Walker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\CopScript.cs" />
      <Compile Include="Assets\FloodScript.cs" />
+     <Compile Include="Assets\GameLoop.cs" />
      <Compile Include="Assets\NurseScript.cs" />
      <Compile Include="Assets\ProjectileVomit.cs" />
      <Compile Include="Assets\Scripts\BackgroundParallax.cs" />

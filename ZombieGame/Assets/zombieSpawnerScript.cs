@@ -5,6 +5,8 @@ public class zombieSpawnerScript : MonoBehaviour {
 
 
 	private bool canSpawnZombie = true;
+	//31 because otherwise a conflict arises between
+	// the smaller zombie spawns which ends up with no zombies spawning at all
 	private double secstoWait = 31;
 	GameObject spawner;
 	public bool isTiming = false;

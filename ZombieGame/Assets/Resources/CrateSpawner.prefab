@@ -37,10 +37,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda02a22fe8aa72488dfb7e9b675b47d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a07e0824d8fb554bad245bf68c1f285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crate: {fileID: 100000, guid: d4a44d763697f3a48b04ebade9134f87, type: 2}
+  crate: {fileID: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

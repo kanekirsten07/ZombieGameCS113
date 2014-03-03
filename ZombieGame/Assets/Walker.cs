@@ -116,6 +116,20 @@ public class Walker : MonoBehaviour {
 		}
 
 	}
+
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		damageAmount = 0f;
+		// If the colliding gameobject is an Enemy...
+		if(col.gameObject.tag == "Bullet")
+		{
+			
+			//damageAmount = 1f;
+			Debug.Log("Boop1");
+		}
+		//handleCollisionStuffs(col);
+		
+	}
 	
 	void Death()
 	{

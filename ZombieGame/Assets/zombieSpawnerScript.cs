@@ -21,6 +21,20 @@ public class zombieSpawnerScript : MonoBehaviour {
 	private double zombietimerdivision = 10;
 	Transform spawnPosition;
 	// Use this for initialization
+
+
+	private int walkerBase = 0;
+	private int walkerOffset = 100;
+	private int copBase = 0;
+	private int copOffsetNeg = 0;
+	private int copOffsetPos = 0;
+	private int nurseBase = 0;
+	private int nurseOffsetNeg = 0;
+	private int nurseOffsetPos = 0;
+	private int FloodBase = 0;
+	private int floodOffsetNeg = 0;
+	private int floodOffsetPos = 0;
+
 	void Start () {
 
 
@@ -67,6 +81,7 @@ public class zombieSpawnerScript : MonoBehaviour {
 	void evaluateCondishuns()
 	{
 		// Evaluate mah condishuns to determine which zombies spawn and how many
+
 		if(canSpawnZombie)
 		{
 			spawnZombies();
@@ -75,20 +90,23 @@ public class zombieSpawnerScript : MonoBehaviour {
 
 	void spawnZombies()
 	{
+		int spawnSeed = Random.Range(0, 100);
 		/*
-		GameObject go = GameObject.Find("Zombini");
-		Transform target = go.transform;
-		Vector2 player = target.position;
-		//Debug.Log("Walker position:" +walker);
-		Debug.Log("Player Position: " +player);
-		 // don't want the bullet spawn in centre
-		Debug.Log("Spawn Zombie");
-		float spawnDistance = 2.0f;
-
 		Debug.Log("Spawner position:"+ transform.position);
-		// ...   
 			*/
+		if(spawnSeed> 0 && spawnSeed< 25)
+			{
 		GameObject.Instantiate(Walker, transform.position , transform.rotation);
+		}else if(spawnSeed > 25 && spawnSeed< 50)
+		{
+			GameObject.Instantiate(Nurse, transform.position , transform.rotation);
+		}else if(spawnSeed > 50 && spawnSeed < 75)
+		{
+			GameObject.Instantiate(Flood, transform.position , transform.rotation);
+		}else if(spawnSeed > 75 && spawnSeed < 100)
+		{
+			GameObject.Instantiate(Cop, transform.position , transform.rotation);
+		}
 
 	}
 }

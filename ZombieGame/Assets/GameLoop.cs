@@ -7,9 +7,20 @@ public class GameLoop : MonoBehaviour {
 	private double timer;
 	public int waveNum = 1;
 	private double secstoWait = 31;
+	public bool is_carrying_missile_launcher = false;
+	public bool is_carrying_laser_gun = false;
+	public bool is_carrying_shotgun = false;
+	public bool is_carrying_machine_gun = false;
 	// Use this for initialization
+
+	private GUIText Score;
+	private GUIText wavenumGui;
+	public int totalScore;
 	void Start () {
 		beginTimer();
+		totalScore = 0;
+		Score =  GameObject.Find("Score").guiText;
+		wavenumGui =  GameObject.Find("waveNumber").guiText;
 	}
 
 	void beginTimer()
@@ -19,6 +30,7 @@ public class GameLoop : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+
 		if(isTiming)
 		{
 			timer += Time.deltaTime;
@@ -31,6 +43,10 @@ public class GameLoop : MonoBehaviour {
 			waveNum++;
 			
 		}
+		Score.text = "Score: " + totalScore.ToString();
+
+		wavenumGui.text = "Wave Number: "+ waveNum.ToString();
+		//Debug.Log(totalScore);
 	
 	}
 }

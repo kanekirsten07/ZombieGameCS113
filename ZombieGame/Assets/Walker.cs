@@ -12,11 +12,11 @@ public class Walker : MonoBehaviour {
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
 	public bool facingRight ;
-	
+	public float damageAmount = 0f;
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
-	private Score score;				// Reference to the Score script.
+	private GameLoop mainLoop;
 
 	private float move = -1f;
 	
@@ -24,57 +24,30 @@ public class Walker : MonoBehaviour {
 	void Start()
 	{
 		facingRight = false;
-	}
-
-
-	void Awake()
-	{
-		// Setting up the references.
-		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		//frontCheck = transform.Find("frontCheck").transform;
-		//score = GameObject.Find("Score").GetComponent<Score>();
+		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 	}
 	
+
 	void FixedUpdate ()
 	{
-		
-		
-		
-		
-		// Create an array of all the colliders in front of the enemy.
-		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
-		
-		// Check each of the colliders.
-		/*foreach(Collider2D c in frontHits)
-		{
-			// If any of the colliders is an Obstacle...
-			if(c.tag == "Obstacle")
-			{
-				// ... Flip the enemy and stop checking the other colliders.
-				Flip ();
-				break;
-			}
-		}
-		*/
+
 
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
-		
-		// If the enemy has one hit point left and has a damagedEnemy sprite...
-		if(HP == 1 && damagedEnemy != null)
-			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
-			ren.sprite = damagedEnemy;
+
 		
 		// If the enemy has zero or fewer hit points and isn't dead yet...
 		if(HP <= 0 && !dead)
+		{
 			// ... call the death function.
 			Death ();
+		}
 	}
 	
-	public void Hurt()
+	public void Hurt(int damageAmount)
 	{
 		// Reduce the number of hit points by one.
-		HP--;
+		HP-=damageAmount;
 	}
 	void walk()
 	{
@@ -119,12 +92,13 @@ public class Walker : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		damageAmount = 0f;
+
+		Debug.Log("boop");
 		// If the colliding gameobject is an Enemy...
-		if(col.gameObject.tag == "Bullet")
+		if(col.gameObject.tag == "pistol_bullet")
 		{
 			
-			//damageAmount = 1f;
+			Hurt (1);
 			Debug.Log("Boop1");
 		}
 		//handleCollisionStuffs(col);
@@ -142,38 +116,18 @@ public class Walker : MonoBehaviour {
 			s.enabled = false;
 		}
 		
-		// Re-enable the main sprite renderer and set it's sprite to the deadEnemy sprite.
-		ren.enabled = true;
-		ren.sprite = deadEnemy;
-		
+
 		// Increase the score by 100 points
-		score.score += 100;
-		
+		mainLoop.totalScore += 10;
 		// Set dead to true.
 		dead = true;
-		
-		// Allow the enemy to rotate and spin it by adding a torque.
-		rigidbody2D.fixedAngle = false;
-		rigidbody2D.AddTorque(Random.Range(deathSpinMin,deathSpinMax));
-		
-		// Find all of the colliders on the gameobject and set them all to be triggers.
-		Collider2D[] cols = GetComponents<Collider2D>();
-		foreach(Collider2D c in cols)
-		{
-			c.isTrigger = true;
-		}
-		
+
+
 		// Play a random audioclip from the deathClips array.
-		int i = Random.Range(0, deathClips.Length);
-		AudioSource.PlayClipAtPoint(deathClips[i], transform.position);
+		//int i = Random.Range(0, deathClips.Length);
+		//AudioSource.PlayClipAtPoint(deathClips[i], transform.position);
 		
-		// Create a vector that is just above the enemy.
-		Vector3 scorePos;
-		scorePos = transform.position;
-		scorePos.y += 1.5f;
-		
-		// Instantiate the 100 points prefab at this point.
-		Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
+
 	}
 	
 	

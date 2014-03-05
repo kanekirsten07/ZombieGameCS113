@@ -75,15 +75,20 @@ public class zombieSpawnerScript : MonoBehaviour {
 
 	void spawnZombies()
 	{
-
+		/*
+		GameObject go = GameObject.Find("Zombini");
+		Transform target = go.transform;
+		Vector2 player = target.position;
+		//Debug.Log("Walker position:" +walker);
+		Debug.Log("Player Position: " +player);
 		 // don't want the bullet spawn in centre
 		Debug.Log("Spawn Zombie");
 		float spawnDistance = 2.0f;
-		 
+
 		Debug.Log("Spawner position:"+ transform.position);
 		// ...   
-
-		GameObject.Instantiate(Walker, transform.position + spawnDistance * transform.forward, transform.rotation);
+			*/
+		GameObject.Instantiate(Walker, transform.position , transform.rotation);
 
 	}
 }

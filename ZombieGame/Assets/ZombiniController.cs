@@ -9,11 +9,13 @@ public class ZombiniController : MonoBehaviour {
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public bool jump = false;				// Condition for whether the player should jump.
 	Animator anim;
-
+	private bool canShoot = true;
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
+
+	public GameObject bullet;
 
 	void Start ()
 	{
@@ -30,6 +32,10 @@ public class ZombiniController : MonoBehaviour {
 		{
 			jump = true;
 		}
+
+		if (Input.GetMouseButtonDown (0) && canShoot) 
+			fire ();
+
 	}
 
 	void FixedUpdate()
@@ -62,6 +68,20 @@ public class ZombiniController : MonoBehaviour {
 		}else{
 
 		}
+	}
+
+	void fire()
+	{
+		
+		Vector3 spawnLocation = this.transform.position;
+
+		float spawnDistance = 2.0f; 
+
+		bullet = (GameObject)Instantiate(Resources.Load("prefab_bullet"), spawnLocation + (2*Vector3.right), transform.rotation);
+		
+		bullet.GetComponent<Bullet>().velocity = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - new Vector3(this.transform.position.x, this.transform.position.y, 0)).normalized;
+		
+		Debug.Log ("Camera.main.ScreenToWorldPoint (Input.mousePosition)= "+Camera.main.ScreenToWorldPoint (Input.mousePosition));
 	}
 
 	void Flip ()

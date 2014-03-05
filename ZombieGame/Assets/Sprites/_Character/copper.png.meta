@@ -49,35 +49,35 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
-        width: 440
+        y: 7
+        width: 430
         height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: copper_1
       rect:
         serializedVersion: 2
-        x: 440
-        y: 36
-        width: 440
+        x: 430
+        y: 7
+        width: 430
         height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: copper_2
       rect:
         serializedVersion: 2
-        x: 880
-        y: 36
-        width: 440
+        x: 860
+        y: 7
+        width: 430
         height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: copper_3
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 36
-        width: 440
+        x: 1290
+        y: 7
+        width: 430
         height: 800
       alignment: 0
       pivot: {x: 0, y: 0}

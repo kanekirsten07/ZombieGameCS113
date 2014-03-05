@@ -427,19 +427,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: maxXAndY.x
-      value: 2
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: maxXAndY.y
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: minXAndY.x
-      value: -2
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: minXAndY.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: xMargin
@@ -1482,8 +1482,8 @@ MonoBehaviour:
   yMargin: 1
   xSmooth: 1
   ySmooth: 1
-  maxXAndY: {x: 2, y: 2}
-  minXAndY: {x: -2, y: -2}
+  maxXAndY: {x: 25, y: 10}
+  minXAndY: {x: -25, y: 0}
 --- !u!124 &1038732174
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1654,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1323508627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.4631767, y: 22.633009, z: 0}
+  m_LocalPosition: {x: 21.5306492, y: 22.4757023, z: 0}
   m_LocalScale: {x: 9.07967854, y: 9.07968712, z: 2}
   m_Children: []
   m_Father: {fileID: 0}

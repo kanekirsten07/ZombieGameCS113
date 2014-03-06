@@ -41,7 +41,7 @@ public class CrateScript : MonoBehaviour {
 	{
 		GameInfoScript gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		List<GameObject> powerUpList = gis.getPowerUpList();
-		int randIndex = Random.Range(0, powerUpList.Count -  1);
+		int randIndex = Random.Range(0, powerUpList.Count);
 		Quaternion facingUp = new Quaternion(0,0,0,1);
 		GameObject.Instantiate(powerUpList[randIndex], transform.position, facingUp);
 	}

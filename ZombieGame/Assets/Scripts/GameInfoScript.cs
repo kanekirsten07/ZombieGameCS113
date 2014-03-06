@@ -6,6 +6,7 @@ public class GameInfoScript : MonoBehaviour {
 
 
 	public List<GameObject> powerUpList;
+	public List<GameObject> weaponList;
 	// Use this for initialization
 
 	//boolean powerups
@@ -29,9 +30,11 @@ public class GameInfoScript : MonoBehaviour {
 		//powerUpList.Add((GameObject)(Resources.Load("MedKit")));
 		//powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
 		powerUpList.Add((GameObject)(Resources.Load("JetPack")));
-	///	powerUpList.Add((GameObject)(Resources.Load("Overpower")));
+	//	powerUpList.Add((GameObject)(Resources.Load("Overpower")));
 	//	powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
-		powerUpList.Add((GameObject)(Resources.Load("Pistol")));
+
+
+		weaponList.Add((GameObject)(Resources.Load("Pistol")));
 
 		player = GameObject.FindGameObjectWithTag("Player");
 
@@ -116,5 +119,10 @@ public class GameInfoScript : MonoBehaviour {
 	public List<GameObject> getPowerUpList()
 	{
 		return powerUpList;
+	}
+
+	public List<GameObject> getWeaponList()
+	{
+		return weaponList;
 	}
 }

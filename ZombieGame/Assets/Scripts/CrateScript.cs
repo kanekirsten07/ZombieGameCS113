@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CrateScript : MonoBehaviour {
-
+	public GameInfoScript gis;
 	private bool isQuitting;
 	// Use this for initialization
 	void Start () {
 		isQuitting = false;
+		GameInfoScript gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 	
 	// Update is called once per frame
@@ -31,15 +32,14 @@ public class CrateScript : MonoBehaviour {
 
 	void spawnRandomItem()
 	{
-		//if(Random.Range(0, 1) < 0.5f)
+		if(Random.Range(0, 1) < 0.5f)
 			spawnRandomPowerUp();
-		//else
-			//spawnRandomWeapon();
+	  	else
+			spawnRandomWeapon();
 	}
 
 	void spawnRandomPowerUp()
 	{
-		GameInfoScript gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		List<GameObject> powerUpList = gis.getPowerUpList();
 		int randIndex = Random.Range(0, powerUpList.Count);
 		Quaternion facingUp = new Quaternion(0,0,0,1);
@@ -48,7 +48,10 @@ public class CrateScript : MonoBehaviour {
 
 	void spawnRandomWeapon()
 	{
-
+		List<GameObject> weaponList = gis.getWeaponList();
+		int randIndex = Random.Range(0, weaponList.Count);
+		Quaternion facingUp = new Quaternion(0,0,0,1);
+		GameObject.Instantiate(weaponList[randIndex], transform.position, facingUp);
 	}
 
 	void OnApplicationQuit()

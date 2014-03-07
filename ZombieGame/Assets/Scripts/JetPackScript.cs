@@ -20,7 +20,7 @@ public class JetPackScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Q))
+		if (coll.gameObject.tag == "Zombini" && Input.GetKeyDown(KeyCode.Q))
 		{
 			if (gis.jetPackActive)
 				gis.powerUpTimer += gis.powerUpDuration;

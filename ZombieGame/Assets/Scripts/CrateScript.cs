@@ -8,7 +8,7 @@ public class CrateScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isQuitting = false;
-		GameInfoScript gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
+
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,7 @@ public class CrateScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Player")
+		if (coll.gameObject.tag == "Zombini")
 		{
 			GameObject.Destroy(this.gameObject);
 		}
@@ -32,6 +32,7 @@ public class CrateScript : MonoBehaviour {
 
 	void spawnRandomItem()
 	{
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		if(Random.Range(0, 1) < 0.5f)
 			spawnRandomPowerUp();
 	  	else

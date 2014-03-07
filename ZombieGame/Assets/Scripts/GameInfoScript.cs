@@ -36,7 +36,7 @@ public class GameInfoScript : MonoBehaviour {
 
 		weaponList.Add((GameObject)(Resources.Load("Pistol")));
 
-		player = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.FindGameObjectWithTag("Zombini");
 
 		//set all to false to begin with
 		powerUpActive = chronoStopActive = repulsorActive = jetPackActive =	overpowerActive = false;
@@ -63,7 +63,7 @@ public class GameInfoScript : MonoBehaviour {
 			powerUpActive = false;
 		}
 
-		player = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.FindGameObjectWithTag("Zombini");
 
 		if (playerInventoryItem != null)
 			playerInventoryItem.transform.position = player.transform.position;

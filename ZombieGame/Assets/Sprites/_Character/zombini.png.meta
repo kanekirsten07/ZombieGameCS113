@@ -48,21 +48,21 @@ TextureImporter:
     - name: zombini_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 5
-        width: 105
+        x: 27
+        y: 4
+        width: 88
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_1
       rect:
         serializedVersion: 2
-        x: 105
+        x: 122
         y: 5
-        width: 105
+        width: 88
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_2
       rect:
         serializedVersion: 2
@@ -71,7 +71,7 @@ TextureImporter:
         width: 105
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_3
       rect:
         serializedVersion: 2
@@ -80,7 +80,7 @@ TextureImporter:
         width: 105
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_4
       rect:
         serializedVersion: 2
@@ -89,7 +89,7 @@ TextureImporter:
         width: 105
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_5
       rect:
         serializedVersion: 2
@@ -98,7 +98,7 @@ TextureImporter:
         width: 105
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: zombini_6
       rect:
         serializedVersion: 2
@@ -107,6 +107,6 @@ TextureImporter:
         width: 105
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 

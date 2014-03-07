@@ -90,7 +90,7 @@ public class ZombiniController : MonoBehaviour {
 		
 		bullet.GetComponent<Bullet>().velocity = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - new Vector3(this.transform.position.x, this.transform.position.y, 0)).normalized;
 		
-		Debug.Log ("Camera.main.ScreenToWorldPoint (Input.mousePosition)= "+Camera.main.ScreenToWorldPoint (Input.mousePosition));
+		//Debug.Log ("Camera.main.ScreenToWorldPoint (Input.mousePosition)= "+Camera.main.ScreenToWorldPoint (Input.mousePosition));
 	}
 
 	void Flip ()

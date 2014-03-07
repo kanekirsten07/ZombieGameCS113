@@ -35,7 +35,7 @@ public class NurseScript : MonoBehaviour {
 		{
 			
 			Hurt (1);
-			Debug.Log("Boop1");
+		//	Debug.Log("Boop1");
 		}
 		//handleCollisionStuffs(col);
 		
@@ -70,8 +70,8 @@ public class NurseScript : MonoBehaviour {
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;
-		Debug.Log("Walker position:" +walker);
-		Debug.Log("Player Position: " +player);
+		//Debug.Log("Walker position:" +walker);
+		//Debug.Log("Player Position: " +player);
 		
 		
 		if(walker[0] < player[0])
@@ -106,14 +106,7 @@ public class NurseScript : MonoBehaviour {
 	void Death()
 	{
 		// Find all of the sprite renderers on this object and it's children.
-		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
-		
-		// Disable all of them sprite renderers.
-		foreach(SpriteRenderer s in otherRenderers)
-		{
-			s.enabled = false;
-		}
-		
+		GameObject.Destroy(this.gameObject);
 		
 		// Increase the score by 100 points
 		mainLoop.totalScore += 20;

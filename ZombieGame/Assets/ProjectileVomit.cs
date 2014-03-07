@@ -14,10 +14,10 @@ public class ProjectileVomit : MonoBehaviour {
 		cop = (CopScript) FindObjectOfType(typeof(CopScript));
 		if(cop.facingRight)
 		{
-			Debug.Log("Blech right");
+		//	Debug.Log("Blech right");
 		rigidbody2D.AddForce(new Vector3(500,400,0)); 
 	}else{
-			Debug.Log("Blech left");
+			//Debug.Log("Blech left");
 		rigidbody2D.AddForce(new Vector3(-500,400,0)); 
 	}
 	}

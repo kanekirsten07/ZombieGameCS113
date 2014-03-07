@@ -19,7 +19,7 @@ public class FloodScript : MonoBehaviour {
 	private GameLoop mainLoop;
 	public bool facingRight ;
 	private float move = -1f;
-	private int explosionDamage = 15;
+	private int explosionDamage = 10;
 
 	void Start()
 	{
@@ -115,14 +115,7 @@ public class FloodScript : MonoBehaviour {
 	void Death()
 	{
 
-		// Find all of the sprite renderers on this object and it's children.
-		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
-		
-		// Disable all of them sprite renderers.
-		foreach(SpriteRenderer s in otherRenderers)
-		{
-			s.enabled = false;
-		}
+		GameObject.Destroy(this.gameObject);
 		
 		
 		// Increase the score by 100 points
@@ -141,13 +134,7 @@ public class FloodScript : MonoBehaviour {
 		// Find all of the sprite renderers on this object and it's children.
 		if(!dead)
 		{
-		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
-			dead = true;
-		// Disable all of them sprite renderers.
-		foreach(SpriteRenderer s in otherRenderers)
-		{
-			s.enabled = false;
-		}
+			GameObject.Destroy(this.gameObject);
 
 			health.takeExplosionDamage(explosionDamage);
 

@@ -32,27 +32,28 @@ public class PlayerHealth : MonoBehaviour
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		damageAmount = 0f;
+		//Debug.Log("Boop");
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "Walker")
 		{
 			
 			damageAmount = 1f;
-			//Debug.Log("Boop1");
+			Debug.Log("Wwalker");
 		}else if(col.gameObject.tag == "Nurse")
 		{
-			Debug.Log("Boop2");
+			Debug.Log("Nurse");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Cop")
 		{
-			Debug.Log("Boop3");
+			Debug.Log("Cop");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Flood")
 		{
-			//Debug.Log("Boop4");
+			Debug.Log("Flood");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Minion")
 		{
-			Debug.Log("Boo5");
+			Debug.Log("Minion");
 			damageAmount = 1f;
 		}
 		handleCollisionStuffs(col);
@@ -105,7 +106,7 @@ public class PlayerHealth : MonoBehaviour
 	{
 		health -= explosionDamage;
 		UpdateHealthBar();
-		Debug.Log(health);
+		Debug.Log("explody");
 	}
 	
 	void TakeDamage (Transform enemy)
@@ -121,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
 		
 		// Reduce the player's health by 10.
 		health -= damageAmount;
-		//Debug.Log(health);
+		Debug.Log(health);
 		
 		// Update what the health bar looks like.
 		UpdateHealthBar();

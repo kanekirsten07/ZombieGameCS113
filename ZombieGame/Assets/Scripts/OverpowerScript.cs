@@ -20,7 +20,7 @@ public class OverpowerScript : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		Debug.Log("Picked up power");
+		//Debug.Log("Picked up power");
 		if (coll.gameObject.tag == "Zombini" && Input.GetKeyDown(KeyCode.Q))
 		{
 			if (gis.overpowerActive)

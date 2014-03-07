@@ -41,6 +41,7 @@ public class GameLoop : MonoBehaviour {
 		{
 			
 			waveNum++;
+			timer = 0;
 			
 		}
 		Score.text = "Score: " + totalScore.ToString();

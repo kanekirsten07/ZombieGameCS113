@@ -84,7 +84,7 @@ public class CopScript : MonoBehaviour {
 		{
 
 		
-			Debug.Log("Blech!");
+			//Debug.Log("Blech!");
 
 			 float spawnDistance = 2.0f; // don't want the bullet spawn in centre
 			
@@ -94,7 +94,7 @@ public class CopScript : MonoBehaviour {
 
 			if(!facingRight)
 				GameObject.Instantiate(vomitPrefab, this.transform.position + (4*Vector3.left), transform.rotation);
-			Debug.Log(transform.position);
+			//Debug.Log(transform.position);
 			
 
 			this.canShoot = false;
@@ -113,8 +113,8 @@ public class CopScript : MonoBehaviour {
 		{
 			
 			Hurt (1);
-			Debug.Log("Boop2");
-			Debug.Log(HP);
+			//Debug.Log("Boop2");
+			//Debug.Log(HP);
 		}
 		//handleCollisionStuffs(col);
 		
@@ -169,15 +169,7 @@ public class CopScript : MonoBehaviour {
 	}
 	void Death()
 	{
-		// Find all of the sprite renderers on this object and it's children.
-		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
-		
-		// Disable all of them sprite renderers.
-		foreach(SpriteRenderer s in otherRenderers)
-		{
-			s.enabled = false;
-		}
-		
+		GameObject.Destroy(this.gameObject);
 		
 		// Increase the score by 100 points
 		mainLoop.totalScore += 30;

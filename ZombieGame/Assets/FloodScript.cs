@@ -14,27 +14,33 @@ public class FloodScript : MonoBehaviour {
 	public float damageAmount = 0f;
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
-
-
+	public GameObject Minion;
+	public PlayerHealth health;
 	private GameLoop mainLoop;
 	public bool facingRight ;
 	private float move = -1f;
-	
+	private int explosionDamage = 15;
+
 	void Start()
 	{
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
+		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
 	}
 	
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		
-		Debug.Log("boop");
+		//Debug.Log("boop");
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
 			
 			Hurt (1);
-			Debug.Log("Boop1");
+			//Debug.Log("Boop1");
+		}
+		if(col.gameObject.tag == "Zombini")
+		{
+			Explode();
 		}
 		//handleCollisionStuffs(col);
 		
@@ -67,7 +73,7 @@ public class FloodScript : MonoBehaviour {
 		Transform target = go.transform;
 		Vector2 walker = transform.position;
 		Vector2 player = target.position;
-		//Debug.Log("Walker position:" +walker);
+		//Debug.Log("Flood position:" +walker);
 		//Debug.Log("Player Position: " +player);
 		
 		//Debug.Log(facingRight);
@@ -97,6 +103,12 @@ public class FloodScript : MonoBehaviour {
 			}
 			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
 		}
+
+		if(Mathf.Abs(Mathf.Abs(walker[0]) - Mathf.Abs(player[0])) <= 3)
+		{
+			//Debug.Log("Boom");
+			Explode();
+		}
 		
 	}
 	
@@ -122,6 +134,32 @@ public class FloodScript : MonoBehaviour {
 		// Play a random audioclip from the deathClips array.
 		//int i = Random.Range(0, deathClips.Length);
 		//AudioSource.PlayClipAtPoint(deathClips[i], transform.position);
+	}
+
+	void Explode()
+	{
+		// Find all of the sprite renderers on this object and it's children.
+		if(!dead)
+		{
+		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
+			dead = true;
+		// Disable all of them sprite renderers.
+		foreach(SpriteRenderer s in otherRenderers)
+		{
+			s.enabled = false;
+		}
+
+			health.takeExplosionDamage(explosionDamage);
+
+			
+		//Spawn minions
+
+		for(int j= 0; j < 5; j++)
+		{
+				//Debug.Log("Spawn minion");
+		GameObject.Instantiate(Minion, this.transform.position + (4*Vector3.right), transform.rotation);
+		}
+		}
 	}
 	
 	

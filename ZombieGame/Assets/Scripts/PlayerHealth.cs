@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 		{
 			
 			damageAmount = 1f;
-			Debug.Log("Boop1");
+			//Debug.Log("Boop1");
 		}else if(col.gameObject.tag == "Nurse")
 		{
 			Debug.Log("Boop2");
@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Flood")
 		{
-			Debug.Log("Boop4");
+			//Debug.Log("Boop4");
 			damageAmount = 5f;
 		}else if(col.gameObject.tag == "Minion")
 		{
@@ -100,6 +100,13 @@ public class PlayerHealth : MonoBehaviour
 		}
 		//}
 	}
+
+	public void takeExplosionDamage(int explosionDamage)
+	{
+		health -= explosionDamage;
+		UpdateHealthBar();
+		Debug.Log(health);
+	}
 	
 	void TakeDamage (Transform enemy)
 	{
@@ -114,7 +121,7 @@ public class PlayerHealth : MonoBehaviour
 		
 		// Reduce the player's health by 10.
 		health -= damageAmount;
-		Debug.Log(health);
+		//Debug.Log(health);
 		
 		// Update what the health bar looks like.
 		UpdateHealthBar();

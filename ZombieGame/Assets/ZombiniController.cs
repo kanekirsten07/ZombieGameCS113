@@ -70,6 +70,7 @@ public class ZombiniController : MonoBehaviour {
 		}
 	}
 
+
 	void fire()
 	{
 		

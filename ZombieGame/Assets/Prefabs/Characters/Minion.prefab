@@ -91,6 +91,7 @@ MonoBehaviour:
   deathSpinMin: -100
   deathSpinMax: 100
   facingRight: 1
+  damageAmount: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

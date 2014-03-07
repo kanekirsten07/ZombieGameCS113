@@ -96,12 +96,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   HP: 2
-  deadEnemy: {fileID: 0}
   damagedEnemy: {fileID: 0}
   deathClips: []
   hundredPointsUI: {fileID: 0}
   deathSpinMin: -100
   deathSpinMax: 100
+  damageAmount: 0
+  Minion: {fileID: 0}
   facingRight: 0
 --- !u!212 &21200000
 SpriteRenderer:

@@ -93,7 +93,7 @@ public class Walker : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D col)
 	{
 
-		Debug.Log("boop");
+		//Debug.Log("boop");
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{

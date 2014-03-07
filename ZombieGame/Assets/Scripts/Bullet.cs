@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour {
 		if (timer <= 0.0f)
 				GameObject.Destroy (this.gameObject);
 		
-		transform.Translate(velocity/10);
+		transform.Translate(velocity*5);
 
 		// Debug.Log ("velocity= "+velocity);
 	

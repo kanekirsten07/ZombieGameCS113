@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: MedKit
   m_TagString: Untagged
@@ -36,9 +37,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f32e6a457a5f184e8c1d26fe65b2ee5, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e20b4f394ed4af48e5bae2b6b06daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ada79cc15541b844978db10c1eedcc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ph: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -60,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 720fc59061d72b446b4c37659ada002e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e035b96c00b54b10bbca31f4a1d026b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

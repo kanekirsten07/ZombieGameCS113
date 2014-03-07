@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62304a49d01f7c44d89bbdb3b714d27a, type: 3}
+  m_Script: {fileID: 11500000, guid: e22250f99d409ba4a9f7ed0f144afa59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gis: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: b5955b77c15275040a2146b261496e5e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9d169eca59e4a7469bffc2ddc695c20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

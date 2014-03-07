@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: ChronoStop
   m_TagString: Untagged
@@ -36,7 +37,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb93917412c914a42b7bf3e407688244, type: 3}
+  m_Script: {fileID: 11500000, guid: b86d4fd286c24408ca747e47b4294b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gis: {fileID: 0}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0075862b3e99f4078b0ea3bd738f2c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &21200000
@@ -60,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: bd87f61343d7c4e41977fcdebdbf4ab5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffe13bb3f6b6940a9bcfb2d64f8909d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -27,11 +27,11 @@ public class GameInfoScript : MonoBehaviour {
 
 	void Start () {
 		powerUpList = new List<GameObject>();
-		//powerUpList.Add((GameObject)(Resources.Load("MedKit")));
-		//powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
+		powerUpList.Add((GameObject)(Resources.Load("MedKit")));
+		powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
 		powerUpList.Add((GameObject)(Resources.Load("JetPack")));
-	//	powerUpList.Add((GameObject)(Resources.Load("Overpower")));
-	//	powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
+		powerUpList.Add((GameObject)(Resources.Load("Overpower")));
+		powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
 
 
 		weaponList.Add((GameObject)(Resources.Load("Pistol")));

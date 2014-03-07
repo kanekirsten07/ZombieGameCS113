@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChronoStopScript : MonoBehaviour {
+public class OverpowerScript : MonoBehaviour {
 	
 	
 	//GameObject gameWorld;
@@ -22,16 +22,11 @@ public class ChronoStopScript : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Q))
 		{
-			if (gis.chronoStopActive)
-			{
+			if (gis.overpowerActive)
 				gis.powerUpTimer += gis.powerUpDuration;
-			}
 			
 			else
-			{
-				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconChronoStop"), gis.inventorySlotLocation, transform.rotation);
-				gis.chronoStopActive = true;
-			}
+				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconOverpower"), gis.inventorySlotLocation, transform.rotation);
 			
 			GameObject.Destroy(this.gameObject);
 		}

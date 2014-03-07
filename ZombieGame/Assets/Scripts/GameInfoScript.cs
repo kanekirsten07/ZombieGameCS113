@@ -14,7 +14,7 @@ public class GameInfoScript : MonoBehaviour {
 	public bool chronoStopActive;
 	public bool repulsorActive;
 	public bool jetPackActive;
-	public bool overPowerActive;
+	public bool overpowerActive;
 
 	public float powerUpDuration;
 	public float powerUpTimer;
@@ -39,7 +39,7 @@ public class GameInfoScript : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 
 		//set all to false to begin with
-		powerUpActive = chronoStopActive = repulsorActive = jetPackActive =	overPowerActive = false;
+		powerUpActive = chronoStopActive = repulsorActive = jetPackActive =	overpowerActive = false;
 
 		//set timers
 		powerUpDuration = powerUpTimer = 10;
@@ -86,7 +86,7 @@ public class GameInfoScript : MonoBehaviour {
 			player.rigidbody2D.gravityScale = 0.5f;
 		}
 
-		else if (overPowerActive)
+		else if (overpowerActive)
 		{
 
 		}
@@ -110,9 +110,9 @@ public class GameInfoScript : MonoBehaviour {
 			player.rigidbody2D.gravityScale = 1f;
 		}
 		
-		else if (overPowerActive)
+		else if (overpowerActive)
 		{
-			overPowerActive = false;
+			overpowerActive = false;
 		}
 	}
 

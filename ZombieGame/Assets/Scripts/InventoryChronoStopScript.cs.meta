@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6fff4d75722894c838e168f09e77f977
+=======
+guid: dc0aa02d2db15344086f0970bfe8a6e7
+>>>>>>> FETCH_HEAD
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

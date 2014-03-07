@@ -14,7 +14,7 @@ public class ZombiniController : MonoBehaviour {
 	private bool grounded = false;			// Whether or not the player is grounded.
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
-
+	private bool is_Shooting;
 	public GameObject bullet;
 
 	void Start ()
@@ -34,7 +34,15 @@ public class ZombiniController : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonDown (0) && canShoot) 
+		{
 			fire ();
+			is_Shooting = true;
+		}
+		if(Input.GetMouseButtonUp(0))
+		{
+			is_Shooting = false;
+		}
+		//Debug.Log(is_Shooting);
 
 	}
 

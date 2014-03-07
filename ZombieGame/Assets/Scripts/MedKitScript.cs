@@ -23,6 +23,8 @@ public class MedKitScript : MonoBehaviour {
 			
 			else
 				ph.health += 15f;
+
+			ph.UpdateHealthBar();
 			
 			GameObject.Destroy(this.gameObject);
 		}

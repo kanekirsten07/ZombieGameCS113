@@ -16,7 +16,7 @@ public class MedKitScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Player")
+		if (coll.gameObject.tag == "Zombini")
 		{
 			if (ph.health >= 85f)
 				ph.health = 100f;

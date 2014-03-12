@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CrateScript : MonoBehaviour {
+
 	public GameInfoScript gis;
 	private bool isQuitting;
+
 	// Use this for initialization
 	void Start () {
 		isQuitting = false;
-
 	}
 	
 	// Update is called once per frame
@@ -18,9 +19,21 @@ public class CrateScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Zombini")
+		if (coll.gameObject.name.Equals("ChronoStop") ||
+		    coll.gameObject.name.Equals("MedKit") ||
+		    coll.gameObject.name.Equals("OverPower") ||
+		    coll.gameObject.name.Equals("Repulsor") ||
+		    coll.gameObject.name.Equals("JetPack"))
+		{
+			GameObject.Destroy(coll.gameObject);
+		}
+
+		if (coll.gameObject.name.Equals("prefab_bullet(Clone)") ||
+		    coll.gameObject.name.Equals("prefab_missile(Clone)")
+		    )
 		{
 			GameObject.Destroy(this.gameObject);
+			GameObject.Destroy(coll.gameObject);
 		}
 	}
 
@@ -33,7 +46,7 @@ public class CrateScript : MonoBehaviour {
 	void spawnRandomItem()
 	{
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
-		if(Random.Range(0, 1) < 0.5f)
+		if(Random.Range(0, 2) == 1)
 			spawnRandomPowerUp();
 	  	else
 			spawnRandomWeapon();

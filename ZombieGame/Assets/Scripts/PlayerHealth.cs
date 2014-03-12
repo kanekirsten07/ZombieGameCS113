@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
 	
 	private ZombiniController ZombiniControl;
 	private Animator anim;						// Reference to the Animator on the player
-	
+	public GameInfoScript gis;
 	
 	void Awake ()
 	{
@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
 		
 		// Getting the intial scale of the healthbar (whilst the player has full health).
 		healthScale = healthBar.transform.localScale;
+
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 	
 	
@@ -76,8 +78,28 @@ public class PlayerHealth : MonoBehaviour
 		// If the player doesn't have health, do some stuff, let him fall into the river to reload the level.
 		else
 		{
-
-			Application.LoadLevel(1);
+			// Find all of the colliders on the gameobject and set them all to be triggers.
+			Collider2D[] cols = GetComponents<Collider2D>();
+			foreach(Collider2D c in cols)
+			{
+				c.isTrigger = true;
+			}
+			
+			// Move all sprite parts of the player to the front
+			SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+			foreach(SpriteRenderer s in spr)
+			{
+				s.sortingLayerName = "UI";
+			}
+			
+			// ... disable user Player Control script
+			GetComponent<PlayerControl>().enabled = false;
+			
+			// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
+			GetComponentInChildren<Gun>().enabled = false;
+			
+			// ... Trigger the 'Die' animation state
+			anim.SetTrigger("Die");
 		}
 		//}
 	}
@@ -91,25 +113,28 @@ public class PlayerHealth : MonoBehaviour
 	
 	void TakeDamage (Transform enemy)
 	{
-		// Make sure the player can't jump.
-		ZombiniControl.jump = false;
-		
-		// Create a vector that's from the enemy to the player with an upwards boost.
-		Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 5f;
-		
-		// Add a force to the player in the direction of the vector and multiply by the hurtForce.
-		//rigidbody2D.AddForce(hurtVector * hurtForce);
-		
-		// Reduce the player's health by 10.
-		health -= damageAmount;
-		Debug.Log(health);
-		
-		// Update what the health bar looks like.
-		UpdateHealthBar();
-		
-		// Play a random clip of the player getting hurt.
-		//int i = Random.Range (0, ouchClips.Length);
-		//AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
+		if (!gis.repulsorActive)
+		{
+			// Make sure the player can't jump.
+			ZombiniControl.jump = false;
+			
+			// Create a vector that's from the enemy to the player with an upwards boost.
+			Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 5f;
+			
+			// Add a force to the player in the direction of the vector and multiply by the hurtForce.
+			//rigidbody2D.AddForce(hurtVector * hurtForce);
+			
+			// Reduce the player's health by 10.
+			health -= damageAmount;
+			Debug.Log(health);
+			
+			// Update what the health bar looks like.
+			UpdateHealthBar();
+			
+			// Play a random clip of the player getting hurt.
+			//int i = Random.Range (0, ouchClips.Length);
+			//AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
+		}
 	}
 	
 	

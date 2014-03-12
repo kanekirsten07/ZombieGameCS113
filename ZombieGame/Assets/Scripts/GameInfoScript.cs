@@ -16,6 +16,8 @@ public class GameInfoScript : MonoBehaviour {
 	public bool jetPackActive;
 	public bool overpowerActive;
 
+	public bool applied;
+
 	public float powerUpDuration;
 	public float powerUpTimer;
 
@@ -25,7 +27,10 @@ public class GameInfoScript : MonoBehaviour {
 
 	public Vector3 inventorySlotLocation;
 
+	public BoxCollider2D repulsorBox;
+
 	void Start () {
+		applied = false;
 		powerUpList = new List<GameObject>();
 		powerUpList.Add((GameObject)(Resources.Load("MedKit")));
 		powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
@@ -33,8 +38,11 @@ public class GameInfoScript : MonoBehaviour {
 		powerUpList.Add((GameObject)(Resources.Load("Overpower")));
 		powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
 
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_machineGun")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_laserGun")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_missileLauncher")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_shotgun")));
 
-		weaponList.Add((GameObject)(Resources.Load("Pistol")));
 
 		player = GameObject.FindGameObjectWithTag("Zombini");
 
@@ -52,33 +60,43 @@ public class GameInfoScript : MonoBehaviour {
 	void Update () {
 		if (powerUpTimer > 0 && powerUpActive)
 		{
-			applyPowerUpEffect();
+			if(!applied)
+			{
+				applied = true;
+				applyPowerUpEffect();
+			}
+			
 			powerUpTimer -= Time.deltaTime;
 		}
-
+		
 		if (powerUpTimer <= 0)
 		{
 			powerUpTimer = powerUpDuration;
 			switchPowerUpOff();
 			powerUpActive = false;
 		}
-
+		
 		player = GameObject.FindGameObjectWithTag("Zombini");
-
+		
 		if (playerInventoryItem != null)
 			playerInventoryItem.transform.position = player.transform.position;
+		
+		if (repulsorActive)
+			growRepulsorBox();
 	}
 
 	void applyPowerUpEffect()
 	{
 		if (chronoStopActive)
 		{
-
+			//do nothing
 		}
 
 		else if (repulsorActive)
 		{
-
+			repulsorBox = (BoxCollider2D)GameObject.Find("Zombini").AddComponent("BoxCollider2D");
+			repulsorBox.size = new Vector2 (0.8f, 0.8f);
+			repulsorBox.center = new Vector2 (0.1f, .5f);
 		}
 
 		else if (jetPackActive)
@@ -88,12 +106,13 @@ public class GameInfoScript : MonoBehaviour {
 
 		else if (overpowerActive)
 		{
-
+			//do nothing
 		}
 	}
 
 	public void switchPowerUpOff()
 	{
+		applied = false;
 		if(chronoStopActive)
 		{
 			chronoStopActive = false;
@@ -102,6 +121,7 @@ public class GameInfoScript : MonoBehaviour {
 		else if (repulsorActive)
 		{
 			repulsorActive = false;
+			GameObject.Destroy(repulsorBox);
 		}
 		
 		else if (jetPackActive)
@@ -124,5 +144,13 @@ public class GameInfoScript : MonoBehaviour {
 	public List<GameObject> getWeaponList()
 	{
 		return weaponList;
+	}
+
+	void growRepulsorBox()
+	{
+		if (repulsorBox.size.y < 2.5f)
+			repulsorBox.size = new Vector3(repulsorBox.size.x, repulsorBox.size.y +.05f, 0);
+		if (repulsorBox.size.x < 2.5f)
+			repulsorBox.size = new Vector3(repulsorBox.size.x + .05f, repulsorBox.size.y, 0);
 	}
 }

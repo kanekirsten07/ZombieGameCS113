@@ -5,7 +5,7 @@ public class GameLoop : MonoBehaviour {
 
 	public bool isTiming = false;
 	private double timer;
-	public int waveNum = 1;
+	public int waveNum ;
 	private double secstoWait = 31;
 	public bool is_carrying_missile_launcher = false;
 	public bool is_carrying_laser_gun = false;
@@ -17,6 +17,7 @@ public class GameLoop : MonoBehaviour {
 	private GUIText wavenumGui;
 	public int totalScore;
 	void Start () {
+		waveNum = 1;
 		beginTimer();
 		totalScore = 0;
 		Score =  GameObject.Find("Score").guiText;

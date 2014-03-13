@@ -2546,7 +2546,7 @@ GameObject:
   m_Layer: 0
   m_Name: SurvivalMusic
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2568,7 +2568,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2603,7 +2603,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7020,6 +7020,19 @@ Prefab:
     - target: {fileID: 400000, guid: f8c4d804385ef4eaf915dc65d7dd747c, type: 2}
       propertyPath: m_LocalScale.y
       value: .159078717
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f8c4d804385ef4eaf915dc65d7dd747c, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -1203168336, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 8200000, guid: f8c4d804385ef4eaf915dc65d7dd747c, type: 2}
+      propertyPath: MaxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: f8c4d804385ef4eaf915dc65d7dd747c, type: 2}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8c4d804385ef4eaf915dc65d7dd747c, type: 2}

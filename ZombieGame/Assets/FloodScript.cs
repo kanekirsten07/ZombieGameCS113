@@ -16,6 +16,8 @@ public class FloodScript : MonoBehaviour {
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	public GameObject Minion;
 	public PlayerHealth health;
+	Animator anim;
+	public bool isExploding = false;
 	private GameLoop mainLoop;
 	public bool facingRight ;
 	private float move = -1f;
@@ -28,6 +30,7 @@ public class FloodScript : MonoBehaviour {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
+		anim = GetComponent<Animator>();
 	}
 	
 	void OnCollisionEnter2D (Collision2D col)
@@ -45,7 +48,9 @@ public class FloodScript : MonoBehaviour {
 		}
 		if(col.gameObject.tag == "Zombini")
 		{
-			Explode();
+			isExploding = true;
+			anim.SetBool("exploding", isExploding);
+			Invoke("Explode", 0.5f);
 		}
 		//handleCollisionStuffs(col);
 		
@@ -56,11 +61,7 @@ public class FloodScript : MonoBehaviour {
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
 		
-		// If the enemy has one hit point left and has a damagedEnemy sprite...
-		if(HP == 1 && damagedEnemy != null)
-			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
-			ren.sprite = damagedEnemy;
-		
+
 		// If the enemy has zero or fewer hit points and isn't dead yet...
 		if(HP <= 0 && !dead)
 			// ... call the death function.
@@ -109,11 +110,7 @@ public class FloodScript : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
 		}
 
-		if(Mathf.Abs(Mathf.Abs(walker[0]) - Mathf.Abs(player[0])) <= 3)
-		{
-			//Debug.Log("Boom");
-			Explode();
-		}
+
 		
 	}
 	
@@ -139,6 +136,8 @@ public class FloodScript : MonoBehaviour {
 		// Find all of the sprite renderers on this object and it's children.
 		if(!dead)
 		{
+
+
 			GameObject.Destroy(this.gameObject);
 
 			health.takeExplosionDamage(explosionDamage);
@@ -153,7 +152,8 @@ public class FloodScript : MonoBehaviour {
 		}
 		}
 	}
-	
+
+
 	
 	public void Flip()
 	{

@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
 		{
 			
 			damageAmount = 1f;
-			Debug.Log("Wwalker");
+			Debug.Log("Walker");
 		}else if(col.gameObject.tag == "Nurse")
 		{
 			Debug.Log("Nurse");
@@ -56,6 +56,10 @@ public class PlayerHealth : MonoBehaviour
 		}else if(col.gameObject.tag == "Minion")
 		{
 			Debug.Log("Minion");
+			damageAmount = 2f;
+		}else if(col.gameObject.tag == "Vomit")
+		{
+			Debug.Log("Vomit");
 			damageAmount = 1f;
 		}
 		handleCollisionStuffs(col);
@@ -91,15 +95,11 @@ public class PlayerHealth : MonoBehaviour
 			{
 				s.sortingLayerName = "UI";
 			}
+
 			
-			// ... disable user Player Control script
-			GetComponent<PlayerControl>().enabled = false;
-			
-			// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
-			GetComponentInChildren<Gun>().enabled = false;
-			
-			// ... Trigger the 'Die' animation state
-			anim.SetTrigger("Die");
+
+		Application.LoadLevel(1);
+
 		}
 		//}
 	}

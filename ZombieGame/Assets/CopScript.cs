@@ -27,6 +27,7 @@ public class CopScript : MonoBehaviour {
 
 
 	private GameLoop mainLoop;
+	public GameInfoScript gis;
 
 	public bool facingRight ;
 	private float move = -1f;
@@ -34,6 +35,8 @@ public class CopScript : MonoBehaviour {
 	{
 		vomitSpawn = transform.Find("vomitSpawn");
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
+
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 
 
@@ -111,8 +114,10 @@ public class CopScript : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			
-			Hurt (1);
+			if (gis.overpowerActive)
+				Death();
+			else
+				Hurt (1);
 			//Debug.Log("Boop2");
 			//Debug.Log(HP);
 		}

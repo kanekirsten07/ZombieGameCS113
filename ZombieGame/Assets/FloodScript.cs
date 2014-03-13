@@ -21,8 +21,11 @@ public class FloodScript : MonoBehaviour {
 	private float move = -1f;
 	private int explosionDamage = 10;
 
+	public GameInfoScript gis;
+
 	void Start()
 	{
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
 	}
@@ -34,8 +37,10 @@ public class FloodScript : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			
-			Hurt (1);
+			if (gis.overpowerActive)
+				Death();
+			else
+				Hurt (1);
 			//Debug.Log("Boop1");
 		}
 		if(col.gameObject.tag == "Zombini")

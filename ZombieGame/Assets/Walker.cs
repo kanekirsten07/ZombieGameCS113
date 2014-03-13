@@ -18,11 +18,14 @@ public class Walker : MonoBehaviour {
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private GameLoop mainLoop;
 
+	public GameInfoScript gis;
+
 	private float move = -1f;
 	
 
 	void Start()
 	{
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		facingRight = false;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 	}
@@ -97,8 +100,10 @@ public class Walker : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			
-			Hurt (1);
+			if (gis.overpowerActive)
+				Death();
+			else
+				Hurt (1);
 		//	Debug.Log("Boop1");
 		}
 		//handleCollisionStuffs(col);

@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NurseScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\beginSurivalMode.js">
     <Files>
-      <File FileName="Assets/FloodScript.cs" Line="53" Column="25" />
-      <File FileName="Assets/ZombiniController.cs" Line="23" Column="35" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="101" Column="3" />
-      <File FileName="Assets/NurseScript.cs" Line="17" Column="23" />
+      <File FileName="Assets\FloodScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZombiniController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets\NurseScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\beginSurivalMode.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

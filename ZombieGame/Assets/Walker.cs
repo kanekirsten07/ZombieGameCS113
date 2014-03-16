@@ -4,7 +4,7 @@ using System.Collections;
 public class Walker : MonoBehaviour {
 	
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public int HP = 1;					// How many times the enemy can be hit before it dies.
+	public float HP = 1f;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
@@ -70,6 +70,7 @@ public class Walker : MonoBehaviour {
 	void FixedUpdate ()
 	{
 
+<<<<<<< HEAD
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		Debug.Log (jump);
 		if(canJump && grounded)
@@ -77,8 +78,13 @@ public class Walker : MonoBehaviour {
 			jump = true;
 			Debug.Log (jump);
 		}
+=======
+		if (!gis.chronoStopActive)
+		{
+>>>>>>> FETCH_HEAD
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		walk();
+			walk();
+		}
 
 		
 		// If the enemy has zero or fewer hit points and isn't dead yet...
@@ -103,11 +109,17 @@ public class Walker : MonoBehaviour {
 		}
 	}
 	
-	public void Hurt(int damageAmount)
+	public void Hurt(float damageAmount)
 	{
-		// Reduce the number of hit points by one.
-		HP-=damageAmount;
+		if (gis.overpowerActive)
+			Death();
+		else
+		{
+			// Reduce the number of hit points by "damageAmount".
+			HP-=damageAmount;
+		}
 	}
+
 	void walk()
 	{
 		GameObject go = GameObject.Find("Zombini");
@@ -156,11 +168,18 @@ public class Walker : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			if (gis.overpowerActive)
-				Death();
-			else
-				Hurt (1);
-		//	Debug.Log("Boop1");
+			Hurt (1);
+			//	Debug.Log("Boop1");
+		}
+
+		else if(col.gameObject.tag == "missile")
+		{
+			Hurt (2f);
+		}
+		
+		else if(col.gameObject.tag == "energy")
+		{
+			Hurt (0.01f);
 		}
 		//handleCollisionStuffs(col);
 		

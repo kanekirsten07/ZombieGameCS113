@@ -98,6 +98,7 @@
      <Compile Include="Assets\Scripts\hoverScript.cs" />
      <Compile Include="Assets\Scripts\pulsateScript.cs" />
      <Compile Include="Assets\Scripts\rotateScript.cs" />
+     <Compile Include="Assets\Scripts\rotateWeapons.cs" />
      <Compile Include="Assets\Scripts\shoot_laser.cs" />
      <Compile Include="Assets\Scripts\shoot_machineGun.cs" />
      <Compile Include="Assets\Scripts\shoot_missileLauncher.cs" />

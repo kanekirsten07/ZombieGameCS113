@@ -4,7 +4,7 @@ using System.Collections;
 public class NurseScript : MonoBehaviour {
 	
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public int HP = 2;					// How many times the enemy can be hit before it dies.
+	public float HP = 2f;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
@@ -70,11 +70,18 @@ public class NurseScript : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			if (gis.overpowerActive)
-				Death();
-			else
-				Hurt (1);
+			Hurt (1);
 		//	Debug.Log("Boop1");
+		}
+
+		else if(col.gameObject.tag == "missile")
+		{
+			Hurt (2f);
+		}
+		
+		else if(col.gameObject.tag == "energy")
+		{
+			Hurt (0.01f);
 		}
 		//handleCollisionStuffs(col);
 		
@@ -83,6 +90,7 @@ public class NurseScript : MonoBehaviour {
 	void FixedUpdate ()
 	{
 	
+<<<<<<< HEAD
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		Debug.Log (jump);
 		if(canJump && grounded)
@@ -92,6 +100,14 @@ public class NurseScript : MonoBehaviour {
 		}
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
+=======
+		
+		if (!gis.chronoStopActive)
+		{
+			// Set the enemy's velocity to moveSpeed in the x direction.
+			walk();
+		}
+>>>>>>> FETCH_HEAD
 		
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
@@ -118,11 +134,17 @@ public class NurseScript : MonoBehaviour {
 		}
 	}
 	
-	public void Hurt(int damageAmount)
+	public void Hurt(float damageAmount)
 	{
-		// Reduce the number of hit points by one.
-		HP-=damageAmount;
+		if (gis.overpowerActive)
+			Death();
+		else
+		{
+			// Reduce the number of hit points by "damageAmount".
+			HP-=damageAmount;
+		}
 	}
+
 	void walk()
 	{
 		GameObject go = GameObject.Find("Zombini");

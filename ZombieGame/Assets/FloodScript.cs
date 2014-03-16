@@ -4,7 +4,7 @@ using System.Collections;
 public class FloodScript : MonoBehaviour {
 
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public int HP = 2;					// How many times the enemy can be hit before it dies.
+	public float HP = 2f;					// How many times the enemy can be hit before it dies.
 
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
@@ -16,8 +16,6 @@ public class FloodScript : MonoBehaviour {
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	public GameObject Minion;
 	public PlayerHealth health;
-	Animator anim;
-	public bool isExploding = false;
 	private GameLoop mainLoop;
 	public bool facingRight ;
 	private float move = -1f;
@@ -40,6 +38,7 @@ public class FloodScript : MonoBehaviour {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
+<<<<<<< HEAD
 		anim = GetComponent<Animator>();
 		groundCheck = transform.Find("groundCheckFlood");
 		beginTimer();
@@ -68,6 +67,8 @@ public class FloodScript : MonoBehaviour {
 	void endTimer()
 	{
 		isTiming = false;
+=======
+>>>>>>> FETCH_HEAD
 	}
 	
 	void OnCollisionEnter2D (Collision2D col)
@@ -77,23 +78,29 @@ public class FloodScript : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			if (gis.overpowerActive)
-				Death();
-			else
-				Hurt (1);
+			Hurt (1f);
 			//Debug.Log("Boop1");
 		}
 		if(col.gameObject.tag == "Zombini")
 		{
-			isExploding = true;
-			anim.SetBool("exploding", isExploding);
-			Invoke("Explode", 0.5f);
+			Explode();
+		}
+
+		else if(col.gameObject.tag == "missile")
+		{
+			Hurt (2f);
+		}
+		
+		else if(col.gameObject.tag == "energy")
+		{
+			Hurt (0.01f);
 		}
 		//handleCollisionStuffs(col);
 		
 	}
 	void FixedUpdate ()
 	{
+<<<<<<< HEAD
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		if(canJump && grounded)
 		{
@@ -102,10 +109,22 @@ public class FloodScript : MonoBehaviour {
 		}
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
+=======
 		
-
+		if (!gis.chronoStopActive)
+		{
+			// Set the enemy's velocity to moveSpeed in the x direction.
+			walk();
+		}
+		
+		// If the enemy has one hit point left and has a damagedEnemy sprite...
+		if(HP == 1f && damagedEnemy != null)
+			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
+			ren.sprite = damagedEnemy;
+>>>>>>> FETCH_HEAD
+		
 		// If the enemy has zero or fewer hit points and isn't dead yet...
-		if(HP <= 0 && !dead)
+		if(HP <= 0f && !dead)
 			// ... call the death function.
 			Death ();
 
@@ -124,11 +143,17 @@ public class FloodScript : MonoBehaviour {
 		}
 	}
 	
-	public void Hurt(int damageAmount)
+	public void Hurt(float damageAmount)
 	{
-		// Reduce the number of hit points by one.
-		HP-=damageAmount;
+		if (gis.overpowerActive)
+			Death();
+		else
+		{
+			// Reduce the number of hit points by "damageAmount".
+			HP-=damageAmount;
+		}
 	}
+
 	void walk()
 	{
 		GameObject go = GameObject.Find("Zombini");
@@ -166,7 +191,11 @@ public class FloodScript : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2(move * moveSpeed, rigidbody2D.velocity.y);	
 		}
 
-
+		if(Mathf.Abs(Mathf.Abs(walker[0]) - Mathf.Abs(player[0])) <= 3)
+		{
+			//Debug.Log("Boom");
+			Explode();
+		}
 		
 	}
 	
@@ -192,8 +221,6 @@ public class FloodScript : MonoBehaviour {
 		// Find all of the sprite renderers on this object and it's children.
 		if(!dead)
 		{
-
-
 			GameObject.Destroy(this.gameObject);
 
 			health.takeExplosionDamage(explosionDamage);
@@ -208,8 +235,7 @@ public class FloodScript : MonoBehaviour {
 		}
 		}
 	}
-
-
+	
 	
 	public void Flip()
 	{

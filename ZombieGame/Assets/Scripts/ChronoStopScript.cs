@@ -6,10 +6,12 @@ public class ChronoStopScript : MonoBehaviour {
 	
 	//GameObject gameWorld;
 	public GameInfoScript gis;
+	public PowerUpGUIScript pug;
 	
 	// Use this for initialization
 	void Start () {
 		//gameWorld = GameObject.Find("GameWorld");
+		//pug = (PowerUpGUIScript)GameObject.Find("PowerUpGUI").GetComponent<PowerUpGUIScript>() as PowerUpGUIScript;
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 	
@@ -29,8 +31,8 @@ public class ChronoStopScript : MonoBehaviour {
 			
 			else
 			{
-				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconChronoStop"), gis.inventorySlotLocation, transform.rotation);
-				gis.chronoStopActive = true;
+				Quaternion facingUp = new Quaternion(0,0,0,1);
+				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconChronoStop"), gis.inventorySlotLocation, facingUp);
 			}
 			
 			GameObject.Destroy(this.gameObject);

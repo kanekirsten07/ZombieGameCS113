@@ -18,6 +18,8 @@ public class MedKitScript : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Zombini")
 		{
+			GetComponent<AudioSource>().Play();
+
 			if (ph.health >= 85f)
 				ph.health = 100f;
 			

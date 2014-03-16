@@ -10,26 +10,37 @@ public class shoot_machineGun : MonoBehaviour {
 
 	public int ammo;
 	public int magazine_size;
-	private int current_ammo;
+	public int currentAmmo;
+	public int startingAmmo;
+
+	public GameInfoScript gis;
 
 	// Use this for initialization
 	void Start () {
-		current_ammo = 100;
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
+		startingAmmo = currentAmmo = 100;
 		magazine_size = 100;
 		ammo = 500;
-		limit_shots_per_sec = 10;
+		limit_shots_per_sec = 20;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (currentAmmo == 0)
+		{
+			GameObject.Destroy(this.gameObject);
+			gis.playerWeapon = 
+				(GameObject)Instantiate(Resources.Load("prefab_pistol"), gis.inventorySlotLocation, transform.rotation);
+		}
+
 		if(framePassed < (60/limit_shots_per_sec))
 			framePassed++;
 
 		// only fire a bullet every 6 frames. AKA, 10 bullets per frame
 		if (framePassed == (60/limit_shots_per_sec) && (trigger || Input.GetMouseButtonDown (0))) 
 		{
-			if(current_ammo > 0)
+			if(currentAmmo > 0)
 				fire ();
 
 			trigger = true;
@@ -43,25 +54,9 @@ public class shoot_machineGun : MonoBehaviour {
 
 	}
 
-	void reload()
-	{
-		if (ammo > magazine_size) 
-		{
-			current_ammo = magazine_size;
-			ammo -= magazine_size;
-		}
-		else
-		{
-			current_ammo = ammo;
-			ammo = 0;
-		}
-		
-		
-	}
-
 	void fire()
 	{
-		current_ammo--; 
+		currentAmmo--; 
 
 		Vector3 spawnLocation = this.transform.position;
 

@@ -14,6 +14,7 @@ public class InventoryJetPackScript : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.E))
 		{
+			GetComponent<AudioSource>().Play();
 			if (gis.powerUpActive)
 				gis.switchPowerUpOff();
 

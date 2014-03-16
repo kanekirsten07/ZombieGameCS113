@@ -10,6 +10,7 @@ public class CrateScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isQuitting = false;
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 	
 	// Update is called once per frame
@@ -19,11 +20,17 @@ public class CrateScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.name.Equals("ChronoStop") ||
-		    coll.gameObject.name.Equals("MedKit") ||
-		    coll.gameObject.name.Equals("OverPower") ||
-		    coll.gameObject.name.Equals("Repulsor") ||
-		    coll.gameObject.name.Equals("JetPack"))
+		if (coll.gameObject.name.Equals("ChronoStop(Clone)") ||
+		    coll.gameObject.name.Equals("MedKit(Clone)") ||
+		    coll.gameObject.name.Equals("OverPower(Clone)") ||
+		    coll.gameObject.name.Equals("Repulsor(Clone)") ||
+		    coll.gameObject.name.Equals("JetPack(Clone)") ||
+
+		    coll.gameObject.name.Equals("Spawn_machineGun(Clone)") ||
+		    coll.gameObject.name.Equals("Spawn_shotgun(Clone)") ||
+		    coll.gameObject.name.Equals("Spawn_missileLauncher(Clone)")
+
+		    )
 		{
 			GameObject.Destroy(coll.gameObject);
 		}
@@ -45,11 +52,10 @@ public class CrateScript : MonoBehaviour {
 
 	void spawnRandomItem()
 	{
-		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
-		if(Random.Range(0, 2) == 1)
+		//if(Random.Range(0, 2) == 1)
 			spawnRandomPowerUp();
-	  	else
-			spawnRandomWeapon();
+	  	//else
+			//spawnRandomWeapon();
 	}
 
 	void spawnRandomPowerUp()

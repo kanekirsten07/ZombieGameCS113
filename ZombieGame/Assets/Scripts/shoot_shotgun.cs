@@ -8,9 +8,16 @@ public class shoot_shotgun : MonoBehaviour {
 	private int framePassed = 0;
 	public int angle; // in degrees
 	public int number_of_bullets;
+
+	public int currentAmmo;
+	public int startingAmmo;
+
+	public GameInfoScript gis;
 	
 	// Use this for initialization
 	void Start () {
+		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
+		currentAmmo = startingAmmo = 10;
 
 		angle = 2;
 		number_of_bullets = 7;
@@ -20,6 +27,13 @@ public class shoot_shotgun : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (currentAmmo == 0)
+		{
+			GameObject.Destroy(this.gameObject);
+			gis.playerWeapon = 
+				(GameObject)Instantiate(Resources.Load("prefab_pistol"), gis.inventorySlotLocation, transform.rotation);
+		}
+
 		if(framePassed < (60/limit_shots_per_sec))
 			framePassed++;
 		
@@ -37,7 +51,8 @@ public class shoot_shotgun : MonoBehaviour {
 	
 	void fire()
 	{
-		
+		currentAmmo--;
+
 		Vector3 spawnLocation = this.transform.position;
 
 		// if(facingRight)	spawnLocation += (2 * Vector3.right);

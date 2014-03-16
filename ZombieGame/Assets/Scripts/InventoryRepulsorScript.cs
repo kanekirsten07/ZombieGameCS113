@@ -14,6 +14,7 @@ public class InventoryRepulsorScript : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.E))
 		{
+			GetComponent<AudioSource>().Play();
 			if (gis.powerUpActive)
 				gis.switchPowerUpOff();
 			

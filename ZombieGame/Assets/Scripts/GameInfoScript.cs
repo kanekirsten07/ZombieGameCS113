@@ -25,23 +25,27 @@ public class GameInfoScript : MonoBehaviour {
 
 	public GameObject player;
 
+	public GameObject playerWeapon;
 	public Vector3 inventorySlotLocation;
 
 	public BoxCollider2D repulsorBox;
 
 	void Start () {
+		inventorySlotLocation = Camera.main.ScreenToWorldPoint
+			(new Vector3(400,130, Camera.main.nearClipPlane));
+		playerWeapon = (GameObject)Instantiate(Resources.Load("prefab_pistol"), inventorySlotLocation, transform.rotation);
+
 		applied = false;
 		powerUpList = new List<GameObject>();
-		powerUpList.Add((GameObject)(Resources.Load("MedKit")));
+		//powerUpList.Add((GameObject)(Resources.Load("MedKit")));
 		powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
 		powerUpList.Add((GameObject)(Resources.Load("JetPack")));
 		powerUpList.Add((GameObject)(Resources.Load("Overpower")));
 		powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
 
-		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_machineGun")));
-		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_laserGun")));
-		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_missileLauncher")));
-		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_shotgun")));
+		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_machineGun")));
+		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_missileLauncher")));
+		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_shotgun")));
 
 
 		player = GameObject.FindGameObjectWithTag("Zombini");
@@ -52,7 +56,7 @@ public class GameInfoScript : MonoBehaviour {
 		//set timers
 		powerUpDuration = powerUpTimer = 10;
 
-		inventorySlotLocation = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+		//inventorySlotLocation = new Vector3(player.transform.position.x, -20f, 0);
 
 	}
 	
@@ -75,11 +79,16 @@ public class GameInfoScript : MonoBehaviour {
 			switchPowerUpOff();
 			powerUpActive = false;
 		}
-		
-		player = GameObject.FindGameObjectWithTag("Zombini");
-		
+
+		if (playerWeapon != null)
+			playerWeapon.transform.position = player.transform.position;
+
 		if (playerInventoryItem != null)
-			playerInventoryItem.transform.position = player.transform.position;
+		{
+			Vector3 wv = Camera.main.ScreenToWorldPoint(new Vector3(400,150,0));
+			Debug.Log (wv);
+			playerInventoryItem.transform.position = wv;
+		}
 		
 		if (repulsorActive)
 			growRepulsorBox();
@@ -148,8 +157,8 @@ public class GameInfoScript : MonoBehaviour {
 
 	void growRepulsorBox()
 	{
-		if (repulsorBox.size.y < 2.5f)
-			repulsorBox.size = new Vector3(repulsorBox.size.x, repulsorBox.size.y +.05f, 0);
+		//if (repulsorBox.size.y < 2.5f)
+			//repulsorBox.size = new Vector3(repulsorBox.size.x, repulsorBox.size.y +.05f, 0);
 		if (repulsorBox.size.x < 2.5f)
 			repulsorBox.size = new Vector3(repulsorBox.size.x + .05f, repulsorBox.size.y, 0);
 	}

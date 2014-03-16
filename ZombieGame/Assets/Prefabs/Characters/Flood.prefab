@@ -15,10 +15,26 @@ GameObject:
   - 58: {fileID: 5800000}
   - 95: {fileID: 9500000}
   - 58: {fileID: 5800002}
+  - 58: {fileID: 5800004}
   m_Layer: 10
   m_Name: Flood
   m_TagString: Flood
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400002}
+  m_Layer: 0
+  m_Name: groundCheckFlood
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29,10 +45,22 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.8008308, y: -34.7851105, z: 0}
+  m_LocalPosition: {x: 5.20220995, y: .616332531, z: 0}
   m_LocalScale: {x: .533845067, y: .533844233, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 400002}
   m_Father: {fileID: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.37849569, z: 0}
+  m_LocalScale: {x: 1.87320268, y: 1.87320554, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!50 &5000000
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -70,6 +98,17 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 3.16000009
   m_Center: {x: .0799999982, y: 1.33000004}
+--- !u!58 &5800004
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Radius: 4.63000011
+  m_Center: {x: 0, y: 2.21000004}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -118,6 +157,12 @@ MonoBehaviour:
   health: {fileID: 0}
   isExploding: 0
   facingRight: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4294965759
+  jumpForce: 1000
+  isTiming: 0
+  jump: 0
   gis: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:

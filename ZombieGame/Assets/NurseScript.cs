@@ -11,7 +11,16 @@ public class NurseScript : MonoBehaviour {
 	public GameObject hundredPointsUI;	// A prefab of 100 that appears when the enemy dies.
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
-	
+	private double jumpWait = 20.0;
+	bool grounded = false;
+	public LayerMask whatIsGround;
+	private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
+	float groundRadius = 0.2f;
+	private double timer;
+	public bool isTiming = false;
+	private bool canJump = true;
+	public bool jump = false;				// Condition for whether the player should jump.
 	public float damageAmount = 0f;
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
@@ -26,8 +35,33 @@ public class NurseScript : MonoBehaviour {
 	{
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
+		groundCheck = transform.Find("groundCheckNurse");
+		beginTimer();
+	}
+	void beginTimer()
+	{
+		timer = 0;
+		isTiming = true;
+	}
+	
+	void Update()
+	{
+		if(isTiming)
+		{
+			timer += Time.deltaTime;
+		}
+		if(timer > jumpWait)
+		{
+			beginTimer();
+			canJump = true;
+		}
+		
 	}
 
+	void endTimer()
+	{
+		isTiming = false;
+	}
 	
 	void OnCollisionEnter2D (Collision2D col)
 	{
@@ -49,7 +83,13 @@ public class NurseScript : MonoBehaviour {
 	void FixedUpdate ()
 	{
 	
-		
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		Debug.Log (jump);
+		if(canJump && grounded)
+		{
+			jump = true;
+			Debug.Log (jump);
+		}
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
 		
@@ -62,6 +102,20 @@ public class NurseScript : MonoBehaviour {
 		if(HP <= 0 && !dead)
 			// ... call the death function.
 			Death ();
+
+		if(jump)
+		{
+			// Play a random jump audio clip.
+			//int i = Random.Range(0, jumpClips.Length);
+			//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+			
+			// Add a vertical force to the player.
+			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			
+			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
+			jump = false;
+			canJump = false;
+		}
 	}
 	
 	public void Hurt(int damageAmount)

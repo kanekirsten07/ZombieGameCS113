@@ -86,7 +86,7 @@ public class GameInfoScript : MonoBehaviour {
 		if (playerInventoryItem != null)
 		{
 			Vector3 wv = Camera.main.ScreenToWorldPoint(new Vector3(400,150,0));
-			Debug.Log (wv);
+			//Debug.Log (wv);
 			playerInventoryItem.transform.position = wv;
 		}
 		

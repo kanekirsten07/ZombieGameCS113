@@ -6,7 +6,7 @@ public class ChronoStopScript : MonoBehaviour {
 	
 	//GameObject gameWorld;
 	public GameInfoScript gis;
-	public PowerUpGUIScript pug;
+
 	
 	// Use this for initialization
 	void Start () {

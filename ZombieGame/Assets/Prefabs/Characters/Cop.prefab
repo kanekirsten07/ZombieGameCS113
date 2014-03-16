@@ -21,6 +21,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400002}
+  m_Layer: 0
+  m_Name: groundCheckCop
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -28,10 +43,22 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.98284149, y: .74498415, z: 0}
+  m_LocalPosition: {x: -19.3038559, y: -.468736172, z: 0}
   m_LocalScale: {x: .59877485, y: .598775685, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 400002}
   m_Father: {fileID: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.219249189, y: -2.77716446, z: 0}
+  m_LocalScale: {x: 1.67007685, y: 1.67007446, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!50 &5000000
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -98,12 +125,15 @@ MonoBehaviour:
   HP: 2
   deadEnemy: {fileID: 0}
   damagedEnemy: {fileID: 0}
-  deathClips: []
-  hundredPointsUI: {fileID: 0}
+  jump: 0
+  jumpForce: 1000
   deathSpinMin: -100
   deathSpinMax: 100
   vomitSpeed: 1
   vomitPrefab: {fileID: 100000, guid: aef43dc2c068e48e9968681d245b38ae, type: 2}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4294965759
   canShoot: 1
   isTiming: 0
   damageAmount: 0

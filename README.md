@@ -6,7 +6,7 @@ This is the video game "Outbreak", designed and developed by Team Sky for CS 113
 
 Developers:
 
-Kirsten kane
+Kirsten Kane
 Joey Shepard
 Darien Vidaure
 Robert Shapiro
@@ -23,4 +23,6 @@ To run this game on Windows, run the Outbreak.exe file.
 To run this game on Mac OS, run the Outbreak.app file.
 
 To run this game on Linux, run the Outbreak.x86 file.
+
+All of the code and art assets can be found at: http://www.github.com/samuraichikx/ZombieGameCS113
 

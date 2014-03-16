@@ -623,32 +623,6 @@ Transform:
   m_LocalScale: {x: 6.4636569, y: 6.46363926, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!1 &589900621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 589900622}
-  m_Layer: 0
-  m_Name: groundCheckWalker
-  m_TagString: Untagged
-  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &589900622
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 589900621}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.2837348, z: 0}
-  m_LocalScale: {x: 2.41118765, y: 2.41118312, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1439932137}
 --- !u!1 &646983763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,6 +1454,7 @@ Transform:
   m_LocalPosition: {x: 6.60852242, y: -.0726857483, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1949023161}
   - {fileID: 1370434097}
   m_Father: {fileID: 0}
 --- !u!114 &920157283
@@ -2307,7 +2282,7 @@ Transform:
   m_LocalPosition: {x: -4.26697922, y: -.00345468521, z: 0}
   m_LocalScale: {x: .41473338, y: .414734155, z: 1}
   m_Children:
-  - {fileID: 589900622}
+  - {fileID: 2005026804}
   m_Father: {fileID: 0}
 --- !u!61 &1439932138
 BoxCollider2D:
@@ -2877,6 +2852,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1949023160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: a7ef8aed74f8c4ac09360eead046c983, type: 2}
+  m_PrefabInternal: {fileID: 1898598787}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1949023161}
+  m_Layer: 0
+  m_Name: groundCheckWalker
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1949023161
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: a7ef8aed74f8c4ac09360eead046c983, type: 2}
+  m_PrefabInternal: {fileID: 1898598787}
+  m_GameObject: {fileID: 1949023160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.53775525, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 920157282}
+--- !u!1 &2005026803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}
+  m_PrefabInternal: {fileID: 1731257333}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2005026804}
+  m_Layer: 0
+  m_Name: groundCheckWalker
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005026804
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 69d11ee370f3b4cefa0b205c693894bd, type: 2}
+  m_PrefabInternal: {fileID: 1731257333}
+  m_GameObject: {fileID: 2005026803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.2837348, z: 0}
+  m_LocalScale: {x: 2.41118765, y: 2.41118312, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1439932137}
 --- !u!1 &2006419511
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ public class CopScript : MonoBehaviour {
 	}
 	void FixedUpdate ()
 	{
-<<<<<<< HEAD
+
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		if(canJump && grounded)
 		{
@@ -85,7 +85,7 @@ public class CopScript : MonoBehaviour {
 			Debug.Log (jump);
 		}
 		walk();
-=======
+
 
 		if (!gis.chronoStopActive)
 		{
@@ -94,7 +94,7 @@ public class CopScript : MonoBehaviour {
 		}
 
 
->>>>>>> FETCH_HEAD
+
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1f && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.

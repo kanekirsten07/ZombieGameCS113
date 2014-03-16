@@ -70,7 +70,7 @@ public class Walker : MonoBehaviour {
 	void FixedUpdate ()
 	{
 
-<<<<<<< HEAD
+
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		Debug.Log (jump);
 		if(canJump && grounded)
@@ -78,10 +78,10 @@ public class Walker : MonoBehaviour {
 			jump = true;
 			Debug.Log (jump);
 		}
-=======
+
 		if (!gis.chronoStopActive)
 		{
->>>>>>> FETCH_HEAD
+
 		// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
 		}

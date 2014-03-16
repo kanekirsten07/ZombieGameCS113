@@ -20,7 +20,7 @@ public class FloodScript : MonoBehaviour {
 	public bool facingRight ;
 	private float move = -1f;
 	private int explosionDamage = 10;
-
+	Animator anim;
 	private double jumpWait = 20.0;
 	bool grounded = false;
 	public LayerMask whatIsGround;
@@ -38,8 +38,8 @@ public class FloodScript : MonoBehaviour {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
-<<<<<<< HEAD
-		anim = GetComponent<Animator>();
+
+
 		groundCheck = transform.Find("groundCheckFlood");
 		beginTimer();
 	}
@@ -67,8 +67,7 @@ public class FloodScript : MonoBehaviour {
 	void endTimer()
 	{
 		isTiming = false;
-=======
->>>>>>> FETCH_HEAD
+
 	}
 	
 	void OnCollisionEnter2D (Collision2D col)
@@ -100,7 +99,7 @@ public class FloodScript : MonoBehaviour {
 	}
 	void FixedUpdate ()
 	{
-<<<<<<< HEAD
+
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		if(canJump && grounded)
 		{
@@ -109,7 +108,7 @@ public class FloodScript : MonoBehaviour {
 		}
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
-=======
+
 		
 		if (!gis.chronoStopActive)
 		{
@@ -121,7 +120,7 @@ public class FloodScript : MonoBehaviour {
 		if(HP == 1f && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
 			ren.sprite = damagedEnemy;
->>>>>>> FETCH_HEAD
+
 		
 		// If the enemy has zero or fewer hit points and isn't dead yet...
 		if(HP <= 0f && !dead)

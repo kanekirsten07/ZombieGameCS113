@@ -90,7 +90,7 @@ public class NurseScript : MonoBehaviour {
 	void FixedUpdate ()
 	{
 	
-<<<<<<< HEAD
+
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		Debug.Log (jump);
 		if(canJump && grounded)
@@ -100,14 +100,14 @@ public class NurseScript : MonoBehaviour {
 		}
 		// Set the enemy's velocity to moveSpeed in the x direction.
 		walk();
-=======
+
 		
 		if (!gis.chronoStopActive)
 		{
 			// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
 		}
->>>>>>> FETCH_HEAD
+
 		
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)

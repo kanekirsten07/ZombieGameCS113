@@ -16,6 +16,7 @@ public class ZombiniController : MonoBehaviour {
 	public LayerMask whatIsGround;
 	private bool is_Shooting;
 	public GameObject bullet;
+	public AudioClip jumpGroan;
 
 	void Start ()
 	{
@@ -67,6 +68,7 @@ public class ZombiniController : MonoBehaviour {
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);
 			//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+			AudioSource.PlayClipAtPoint(jumpGroan, transform.position);
 
 			// Add a vertical force to the player.
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));

@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
 	private ZombiniController ZombiniControl;
 	private Animator anim;						// Reference to the Animator on the player
 	public GameInfoScript gis;
+	public AudioClip hurtGroan;
 	
 	void Awake ()
 	{
@@ -41,26 +42,37 @@ public class PlayerHealth : MonoBehaviour
 			
 			damageAmount = 1f;
 			Debug.Log("Walker");
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
 		}else if(col.gameObject.tag == "Nurse")
 		{
 			Debug.Log("Nurse");
 			damageAmount = 5f;
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
+
 		}else if(col.gameObject.tag == "Cop")
 		{
 			Debug.Log("Cop");
 			damageAmount = 5f;
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
+
 		}else if(col.gameObject.tag == "Flood")
 		{
 			Debug.Log("Flood");
 			damageAmount = 5f;
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
+
 		}else if(col.gameObject.tag == "Minion")
 		{
 			Debug.Log("Minion");
 			damageAmount = 2f;
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
+
 		}else if(col.gameObject.tag == "Vomit")
 		{
 			Debug.Log("Vomit");
 			damageAmount = 1f;
+			AudioSource.PlayClipAtPoint(hurtGroan, transform.position);
+
 		}
 		handleCollisionStuffs(col);
 		

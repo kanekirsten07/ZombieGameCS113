@@ -129,6 +129,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294966783
   bullet: {fileID: 0}
+  jumpGroan: {fileID: 8300000, guid: 772feee44276555448f71616ffbc2c53, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,6 +146,8 @@ MonoBehaviour:
   ouchClips: []
   hurtForce: 10
   damageAmount: 10
+  gis: {fileID: 0}
+  hurtGroan: {fileID: 8300000, guid: b95233b37bcb7d640949db034d069d01, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

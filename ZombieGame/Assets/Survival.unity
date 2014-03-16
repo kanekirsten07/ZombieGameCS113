@@ -498,6 +498,7 @@ MonoBehaviour:
   powerUpTimer: 0
   playerInventoryItem: {fileID: 0}
   player: {fileID: 0}
+  playerWeapon: {fileID: 0}
   inventorySlotLocation: {x: 0, y: 0, z: 0}
   repulsorBox: {fileID: 0}
 --- !u!4 &390359234
@@ -1193,6 +1194,7 @@ MonoBehaviour:
   hurtForce: 10
   damageAmount: 10
   gis: {fileID: 0}
+  hurtGroan: {fileID: 8300000, guid: b95233b37bcb7d640949db034d069d01, type: 3}
 --- !u!61 &793998546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1275,6 +1277,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294966783
   bullet: {fileID: 0}
+  jumpGroan: {fileID: 8300000, guid: 772feee44276555448f71616ffbc2c53, type: 3}
 --- !u!50 &793998551
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1314,7 +1317,7 @@ GameObject:
   - 114: {fileID: 811994931}
   - 198: {fileID: 811994930}
   - 199: {fileID: 811994929}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: CrateSpawner
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
@@ -3181,7 +3184,7 @@ GameObject:
   - 114: {fileID: 1481565591}
   - 198: {fileID: 1481565590}
   - 199: {fileID: 1481565589}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: CrateSpawner
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
@@ -4507,7 +4510,7 @@ GameObject:
   - 114: {fileID: 1549515905}
   - 198: {fileID: 1549515904}
   - 199: {fileID: 1549515903}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: CrateSpawner
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}

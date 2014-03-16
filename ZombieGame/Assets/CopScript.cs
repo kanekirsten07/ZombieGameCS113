@@ -18,19 +18,24 @@ public class CopScript : MonoBehaviour {
 	private Transform vomitSpawn;
 	private double secstoWait = 10.0;
 	private double jumpWait = 20.0;
+	private double groanWait = 25.0;
 	bool grounded = false;
 	public LayerMask whatIsGround;
 	float groundRadius = 0.2f;
 	private double timer;
+	private double timer2;
+	private double timer3;
 	public bool canShoot = true;
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	public bool isTiming = false;
+	public bool isTiming2 = false;
+	public bool isTiming3 = false;
 	public float damageAmount = 0f;
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private bool canJump = true;
-
+	public AudioClip zombieGroan;
 	private GameLoop mainLoop;
 	public GameInfoScript gis;
 
@@ -41,7 +46,7 @@ public class CopScript : MonoBehaviour {
 		vomitSpawn = transform.Find("vomitSpawn");
 		groundCheck = transform.Find("groundCheckCop");
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
-
+		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 
@@ -52,21 +57,41 @@ public class CopScript : MonoBehaviour {
 		isTiming = true;
 	}
 
+	void beginTimer2()
+	{
+		timer2 = 0;
+		isTiming2 = true;
+	}
+
+	void beginTimer3()
+	{
+		timer3 = 0;
+		isTiming3 = true;
+	}
+
 	void Update()
 	{
 		if(isTiming)
 		{
 			timer += Time.deltaTime;
+			timer2 += Time.deltaTime;
+			timer3 += Time.deltaTime;
 		}
 		if(timer > secstoWait)
 		{
 
 			canShoot = true;
 		}
-		if(timer > jumpWait)
+		if(timer2 > jumpWait)
 		{
-			beginTimer();
+			beginTimer2();
 			canJump = true;
+		}
+
+		if(timer3 > groanWait)
+		{
+			beginTimer3();
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
 	}

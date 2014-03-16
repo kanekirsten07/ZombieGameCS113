@@ -155,7 +155,6 @@ MonoBehaviour:
   damageAmount: 0
   Minion: {fileID: 100000, guid: a7ef8aed74f8c4ac09360eead046c983, type: 2}
   health: {fileID: 0}
-  isExploding: 0
   facingRight: 0
   whatIsGround:
     serializedVersion: 2
@@ -164,6 +163,7 @@ MonoBehaviour:
   isTiming: 0
   jump: 0
   gis: {fileID: 0}
+  zombieGroan: {fileID: 8300000, guid: 05c93fa1c390f4ab6868d31e31a6a308, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

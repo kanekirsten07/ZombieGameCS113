@@ -136,7 +136,10 @@ MonoBehaviour:
     m_Bits: 4294965759
   canShoot: 1
   isTiming: 0
+  isTiming2: 0
+  isTiming3: 0
   damageAmount: 0
+  zombieGroan: {fileID: 8300000, guid: 05c93fa1c390f4ab6868d31e31a6a308, type: 3}
   gis: {fileID: 0}
   facingRight: 0
 --- !u!212 &21200000

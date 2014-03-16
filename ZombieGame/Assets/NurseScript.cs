@@ -7,18 +7,20 @@ public class NurseScript : MonoBehaviour {
 	public float HP = 2f;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
-	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
 	public GameObject hundredPointsUI;	// A prefab of 100 that appears when the enemy dies.
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
-	private double jumpWait = 20.0;
+	private double jumpWait = 15.0;
+	private double groanWait = 7.0;
 	bool grounded = false;
 	public LayerMask whatIsGround;
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	float groundRadius = 0.2f;
 	private double timer;
+	private double timer2;
 	public bool isTiming = false;
+	public bool isTiming2 = false;
 	private bool canJump = true;
 	public bool jump = false;				// Condition for whether the player should jump.
 	public float damageAmount = 0f;
@@ -28,7 +30,7 @@ public class NurseScript : MonoBehaviour {
 	private bool dead = false;			// Whether or not the enemy is dead.
 	private GameLoop mainLoop;
 	private float move = -1f;
-
+	public AudioClip zombieGroan;
 	public GameInfoScript gis;
 
 	void Start()
@@ -36,6 +38,7 @@ public class NurseScript : MonoBehaviour {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		groundCheck = transform.Find("groundCheckNurse");
+		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		beginTimer();
 	}
 	void beginTimer()
@@ -43,17 +46,29 @@ public class NurseScript : MonoBehaviour {
 		timer = 0;
 		isTiming = true;
 	}
+	void beginTimer2()
+	{
+		timer2 = 0;
+		isTiming2 = true;
+	}
 	
 	void Update()
 	{
 		if(isTiming)
 		{
 			timer += Time.deltaTime;
+			timer2 += Time.deltaTime;
 		}
 		if(timer > jumpWait)
 		{
 			beginTimer();
 			canJump = true;
+		}
+
+		if(timer2 > groanWait)
+		{
+			beginTimer2();
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 	}

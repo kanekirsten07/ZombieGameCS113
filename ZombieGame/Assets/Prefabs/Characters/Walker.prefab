@@ -125,7 +125,7 @@ MonoBehaviour:
   HP: 2
   deadEnemy: {fileID: 0}
   damagedEnemy: {fileID: 0}
-  deathClips: []
+  zombieGroan: {fileID: 8300000, guid: 05c93fa1c390f4ab6868d31e31a6a308, type: 3}
   hundredPointsUI: {fileID: 0}
   deathSpinMin: -100
   deathSpinMax: 100
@@ -136,6 +136,7 @@ MonoBehaviour:
     m_Bits: 4294965759
   jumpForce: 1000
   isTiming: 0
+  isTiming2: 0
   jump: 0
   gis: {fileID: 0}
 --- !u!212 &21200000

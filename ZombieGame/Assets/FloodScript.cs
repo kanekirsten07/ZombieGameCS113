@@ -21,24 +21,28 @@ public class FloodScript : MonoBehaviour {
 	private float move = -1f;
 	private int explosionDamage = 10;
 	Animator anim;
-	private double jumpWait = 20.0;
+	private double jumpWait = 30.0;
+	private double groanWait = 15.0;
 	bool grounded = false;
 	public LayerMask whatIsGround;
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	float groundRadius = 0.2f;
 	private double timer;
+	private double timer2;
+	public bool isTiming2 = false;
 	public bool isTiming = false;
 	private bool canJump = true;
 	public bool jump = false;			
 	public GameInfoScript gis;
+	public AudioClip zombieGroan;
 
 	void Start()
 	{
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
-
+		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 
 		groundCheck = transform.Find("groundCheckFlood");
 		beginTimer();
@@ -49,17 +53,29 @@ public class FloodScript : MonoBehaviour {
 		timer = 0;
 		isTiming = true;
 	}
+
+	void beginTimer2()
+	{
+		timer2 = 0;
+		isTiming2 = true;
+	}
 	
 	void Update()
 	{
 		if(isTiming)
 		{
 			timer += Time.deltaTime;
+			timer2 += Time.deltaTime;
 		}
 		if(timer > jumpWait)
 		{
 			beginTimer();
 			canJump = true;
+		}
+		if(timer2 > groanWait)
+		{
+			beginTimer2();
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 	}

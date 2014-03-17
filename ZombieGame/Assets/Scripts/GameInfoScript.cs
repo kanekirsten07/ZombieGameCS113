@@ -37,15 +37,15 @@ public class GameInfoScript : MonoBehaviour {
 
 		applied = false;
 		powerUpList = new List<GameObject>();
-		//powerUpList.Add((GameObject)(Resources.Load("MedKit")));
+		powerUpList.Add((GameObject)(Resources.Load("MedKit")));
 		powerUpList.Add((GameObject)(Resources.Load("Repulsor")));
 		powerUpList.Add((GameObject)(Resources.Load("JetPack")));
 		powerUpList.Add((GameObject)(Resources.Load("Overpower")));
 		powerUpList.Add((GameObject)(Resources.Load("ChronoStop")));
 
-		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_machineGun")));
-		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_missileLauncher")));
-		//weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_shotgun")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_machineGun")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_missileLauncher")));
+		weaponList.Add((GameObject)(Resources.Load("Icons/Spawn_shotgun")));
 
 
 		player = GameObject.FindGameObjectWithTag("Zombini");

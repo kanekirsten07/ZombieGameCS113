@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InventoryRepulsorScript : MonoBehaviour {
 	
-	
+	public AudioClip ac;
 	public GameInfoScript gis;
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class InventoryRepulsorScript : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			GetComponent<AudioSource>().Play();
+			AudioSource.PlayClipAtPoint(ac, GameObject.Find ("Zombini").transform.position);
 			if (gis.powerUpActive)
 				gis.switchPowerUpOff();
 			

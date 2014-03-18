@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c0082d762a94f52904f56986dcc10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ac: {fileID: 8300000, guid: e6961b733d2f945469db9e656e762dff, type: 3}
   gis: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:

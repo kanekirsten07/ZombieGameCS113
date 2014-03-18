@@ -38,6 +38,7 @@ public class CopScript : MonoBehaviour {
 	public AudioClip zombieGroan;
 	private GameLoop mainLoop;
 	public GameInfoScript gis;
+	public Vector3 lastPos;
 
 	public bool facingRight ;
 	private float move = -1f;
@@ -46,7 +47,7 @@ public class CopScript : MonoBehaviour {
 		vomitSpawn = transform.Find("vomitSpawn");
 		groundCheck = transform.Find("groundCheckCop");
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
-		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 	}
 
@@ -91,7 +92,7 @@ public class CopScript : MonoBehaviour {
 		if(timer3 > groanWait)
 		{
 			beginTimer3();
-			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		//	AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
 	}
@@ -109,13 +110,20 @@ public class CopScript : MonoBehaviour {
 			jump = true;
 			Debug.Log (jump);
 		}
-		walk();
 
 
 		if (!gis.chronoStopActive)
 		{
+			GetComponent<Animator>().enabled = true;
 			// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
+			lastPos = transform.position;
+		}
+		
+		else
+		{
+			transform.position = lastPos;
+			GetComponent<Animator>().enabled = false;
 		}
 
 
@@ -130,7 +138,7 @@ public class CopScript : MonoBehaviour {
 			// ... call the death function.
 			Death ();
 
-		if(jump)
+		if(jump && !gis.chronoStopActive)
 		{
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);
@@ -183,17 +191,22 @@ public class CopScript : MonoBehaviour {
 			Hurt (1f);
 			//Debug.Log("Boop2");
 			//Debug.Log(HP);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
-		else if(col.gameObject.tag == "missile")
+		else if(col.gameObject.tag == "missile" || col.gameObject.tag == "missileExplosion")
 		{
 			Hurt (2f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
 		else if(col.gameObject.tag == "energy")
 		{
 			Hurt (0.01f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
+
+
 		//handleCollisionStuffs(col);
 		
 	}

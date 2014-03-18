@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 61: {fileID: 6100000}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ChronoStop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

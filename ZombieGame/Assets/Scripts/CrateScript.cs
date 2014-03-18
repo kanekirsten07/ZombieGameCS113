@@ -52,10 +52,10 @@ public class CrateScript : MonoBehaviour {
 
 	void spawnRandomItem()
 	{
-		//if(Random.Range(0, 2) == 1)
+		if(Random.Range(0, 2) == 1)
 			spawnRandomPowerUp();
-	  	//else
-			//spawnRandomWeapon();
+	  	else
+			spawnRandomWeapon();
 	}
 
 	void spawnRandomPowerUp()

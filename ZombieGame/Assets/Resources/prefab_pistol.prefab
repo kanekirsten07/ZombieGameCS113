@@ -44,6 +44,7 @@ MonoBehaviour:
   limit_shots_per_sec: 0
   ammo: 0
   magazine_size: 0
+  sound: {fileID: 8300000, guid: ecb4859f56834c845b75bb53181fb183, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a789bfef8454a4494299467a2fb0ee, type: 3}
+  m_Script: {fileID: 11500000, guid: e4fd48dfd3fe440fa87fdc42295a66b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   zombini: {fileID: 0}

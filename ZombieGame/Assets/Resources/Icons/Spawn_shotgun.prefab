@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spawn_shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d70cd012464f0840aefc05f8ed480cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb1a6e9868954f348bf0af866bb16bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gis: {fileID: 0}

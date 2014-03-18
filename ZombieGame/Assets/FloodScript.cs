@@ -4,7 +4,7 @@ using System.Collections;
 public class FloodScript : MonoBehaviour {
 
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public float HP = 2f;					// How many times the enemy can be hit before it dies.
+	public float HP = 1f;					// How many times the enemy can be hit before it dies.
 
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip[] deathClips;		// An array of audioclips that can play when the enemy dies.
@@ -36,13 +36,14 @@ public class FloodScript : MonoBehaviour {
 	public bool jump = false;			
 	public GameInfoScript gis;
 	public AudioClip zombieGroan;
+	public Vector3 lastPos;
 
 	void Start()
 	{
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		health = (PlayerHealth) FindObjectOfType(typeof(PlayerHealth));
-		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 
 		groundCheck = transform.Find("groundCheckFlood");
 		beginTimer();
@@ -75,7 +76,7 @@ public class FloodScript : MonoBehaviour {
 		if(timer2 > groanWait)
 		{
 			beginTimer2();
-			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+			//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 	}
@@ -93,22 +94,27 @@ public class FloodScript : MonoBehaviour {
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "pistol_bullet")
 		{
-			Hurt (1f);
+			Hurt (10f);
 			//Debug.Log("Boop1");
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+			
 		}
 		if(col.gameObject.tag == "Zombini")
 		{
 			Explode();
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
-		else if(col.gameObject.tag == "missile")
+		else if(col.gameObject.tag == "missile" || col.gameObject.tag == "missileExplosion")
 		{
-			Hurt (2f);
+			Hurt (20f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 		else if(col.gameObject.tag == "energy")
 		{
 			Hurt (0.01f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		//handleCollisionStuffs(col);
 		
@@ -122,14 +128,20 @@ public class FloodScript : MonoBehaviour {
 			jump = true;
 			Debug.Log (jump);
 		}
-		// Set the enemy's velocity to moveSpeed in the x direction.
-		walk();
 
 		
 		if (!gis.chronoStopActive)
 		{
+			GetComponent<Animator>().enabled = true;
 			// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
+			lastPos = transform.position;
+		}
+		
+		else
+		{
+			transform.position = lastPos;
+			GetComponent<Animator>().enabled = false;
 		}
 		
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
@@ -143,7 +155,7 @@ public class FloodScript : MonoBehaviour {
 			// ... call the death function.
 			Death ();
 
-		if(jump)
+		if(jump && !gis.chronoStopActive)
 		{
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);

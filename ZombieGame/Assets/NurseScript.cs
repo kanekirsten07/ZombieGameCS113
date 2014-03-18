@@ -4,7 +4,7 @@ using System.Collections;
 public class NurseScript : MonoBehaviour {
 	
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public float HP = 2f;					// How many times the enemy can be hit before it dies.
+	public float HP = 3f;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public GameObject hundredPointsUI;	// A prefab of 100 that appears when the enemy dies.
@@ -32,13 +32,14 @@ public class NurseScript : MonoBehaviour {
 	private float move = -1f;
 	public AudioClip zombieGroan;
 	public GameInfoScript gis;
+	public Vector3 lastPos;
 
 	void Start()
 	{
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		groundCheck = transform.Find("groundCheckNurse");
-		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		beginTimer();
 	}
 	void beginTimer()
@@ -68,7 +69,7 @@ public class NurseScript : MonoBehaviour {
 		if(timer2 > groanWait)
 		{
 			beginTimer2();
-			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+			//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 	}
@@ -86,12 +87,14 @@ public class NurseScript : MonoBehaviour {
 		if(col.gameObject.tag == "pistol_bullet")
 		{
 			Hurt (1);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		//	Debug.Log("Boop1");
 		}
 
-		else if(col.gameObject.tag == "missile")
+		else if(col.gameObject.tag == "missile" || col.gameObject.tag == "missileExplosion")
 		{
 			Hurt (2f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 		else if(col.gameObject.tag == "energy")
@@ -113,14 +116,19 @@ public class NurseScript : MonoBehaviour {
 			jump = true;
 			Debug.Log (jump);
 		}
-		// Set the enemy's velocity to moveSpeed in the x direction.
-		walk();
-
 		
 		if (!gis.chronoStopActive)
 		{
+			GetComponent<Animator>().enabled = true;
 			// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
+			lastPos = transform.position;
+		}
+
+		else
+		{
+			transform.position = lastPos;
+			GetComponent<Animator>().enabled = false;
 		}
 
 		
@@ -134,7 +142,7 @@ public class NurseScript : MonoBehaviour {
 			// ... call the death function.
 			Death ();
 
-		if(jump)
+		if(jump && !gis.chronoStopActive)
 		{
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);

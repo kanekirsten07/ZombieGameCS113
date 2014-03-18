@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: MissileExplosion
-  m_TagString: Untagged
+  m_TagString: missileExplosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0379a561e48a94f488982353196fa04b, type: 3}
+  m_Script: {fileID: 11500000, guid: 119a18b5f73fa452bab6f0b2e8ad0726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000

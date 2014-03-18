@@ -26,7 +26,11 @@ public class JetPackScript : MonoBehaviour {
 				gis.powerUpTimer += gis.powerUpDuration;
 
 			else
+			{
+				GameObject.Find ("PowerUpTimer").GetComponent<GUIText>().guiText.text = "";
+				GameObject.Destroy(gis.playerInventoryItem);
 				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconJetPack"), gis.inventorySlotLocation, transform.rotation);
+			}
 
 			GameObject.Destroy(this.gameObject);
 		}

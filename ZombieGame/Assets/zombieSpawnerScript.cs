@@ -18,7 +18,7 @@ public class zombieSpawnerScript : MonoBehaviour {
 	public GameObject Cop;
 	public GameObject Flood;
 	public GameObject Minion;
-	private double zombietimerdivision = 10;
+	private double zombietimerdivision = 4;
 	Transform spawnPosition;
 	// Use this for initialization
 

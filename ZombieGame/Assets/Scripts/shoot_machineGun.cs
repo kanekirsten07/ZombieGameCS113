@@ -9,9 +9,10 @@ public class shoot_machineGun : MonoBehaviour {
 	private int framePassed = 0;
 
 	public int ammo;
-	public int magazine_size;
 	public int currentAmmo;
 	public int startingAmmo;
+
+	public AudioClip sound;
 
 	public GameInfoScript gis;
 
@@ -19,9 +20,8 @@ public class shoot_machineGun : MonoBehaviour {
 	void Start () {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		startingAmmo = currentAmmo = 100;
-		magazine_size = 100;
 		ammo = 500;
-		limit_shots_per_sec = 20;
+		limit_shots_per_sec = 10;
 	}
 	
 	// Update is called once per frame
@@ -56,20 +56,32 @@ public class shoot_machineGun : MonoBehaviour {
 
 	void fire()
 	{
-		currentAmmo--; 
+		currentAmmo--;
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
-		Vector3 spawnLocation = this.transform.position;
-
-		// if(facingRight)	spawnLocation += (2 * Vector3.right);
-		// else 			spawnLocation += (2 * Vector3.left);
-
-		spawnLocation.z = Camera.main.ScreenToWorldPoint (Input.mousePosition).z;
+		AudioSource.PlayClipAtPoint (sound, transform.position);
 		
+		// currentAmmo--; 
+		
+		GameObject zombini = GameObject.Find ("Zombini");
+		
+		bool  temp = zombini.GetComponent<ZombiniController>().facingRight;
+		
+		Vector3 spawnLocation = GameObject.Find("sphere_machineGun").transform.position;	
+
 		bullet = (GameObject)Instantiate(Resources.Load("prefab_bullet"), spawnLocation, transform.rotation);
 		
-		bullet.GetComponent<Bullet>().velocity = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z)).normalized;
+		bullet.GetComponent<Bullet>().velocity = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - spawnLocation).normalized;
 
-		bullet.GetComponent<Bullet> ().velocity *= 2;
+		Vector3 temp2 = new Vector3(1,0,2);
+		Vector3 temp3 = new Vector3(-1,0,2);
+		
+		if(mousePos.x > transform.position.x)
+		{
+			bullet.GetComponent<Bullet> ().velocity = temp2;
+		}
+		else
+			bullet.GetComponent<Bullet> ().velocity = temp3;
 
 		bullet.GetComponent<Bullet> ().velocity.z = 1;
 	}

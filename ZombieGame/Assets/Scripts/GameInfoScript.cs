@@ -31,9 +31,9 @@ public class GameInfoScript : MonoBehaviour {
 	public BoxCollider2D repulsorBox;
 
 	void Start () {
-		inventorySlotLocation = Camera.main.ScreenToWorldPoint
-			(new Vector3(400,130, Camera.main.nearClipPlane));
-		playerWeapon = (GameObject)Instantiate(Resources.Load("prefab_pistol"), inventorySlotLocation, transform.rotation);
+		//inventorySlotLocation = Camera.main.ScreenToWorldPoint
+			//(new Vector3(400,130, Camera.main.nearClipPlane));
+
 
 		applied = false;
 		powerUpList = new List<GameObject>();
@@ -49,7 +49,8 @@ public class GameInfoScript : MonoBehaviour {
 
 
 		player = GameObject.FindGameObjectWithTag("Zombini");
-
+		playerWeapon = (GameObject)Instantiate(Resources.Load("prefab_pistol"), player.transform.position, transform.rotation);
+		//playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconOverpower"), player.transform.position, transform.rotation);
 		//set all to false to begin with
 		powerUpActive = chronoStopActive = repulsorActive = jetPackActive =	overpowerActive = false;
 
@@ -85,7 +86,9 @@ public class GameInfoScript : MonoBehaviour {
 
 		if (playerInventoryItem != null)
 		{
-			Vector3 wv = Camera.main.ScreenToWorldPoint(new Vector3(400,150,0));
+			Vector3 wv = Camera.main.ScreenToWorldPoint(new Vector3(620,495,0));
+			//Vector3 wv = Camera.main.WorldToScreenPoint(new Vector3(-29,-19,0));
+			wv.z = 0;
 			//Debug.Log (wv);
 			playerInventoryItem.transform.position = wv;
 		}
@@ -122,6 +125,8 @@ public class GameInfoScript : MonoBehaviour {
 	public void switchPowerUpOff()
 	{
 		applied = false;
+		powerUpTimer = 10f;
+
 		if(chronoStopActive)
 		{
 			chronoStopActive = false;
@@ -159,7 +164,7 @@ public class GameInfoScript : MonoBehaviour {
 	{
 		//if (repulsorBox.size.y < 2.5f)
 			//repulsorBox.size = new Vector3(repulsorBox.size.x, repulsorBox.size.y +.05f, 0);
-		if (repulsorBox.size.x < 2.5f)
+		if (repulsorBox.size.x < 1.5f)
 			repulsorBox.size = new Vector3(repulsorBox.size.x + .05f, repulsorBox.size.y, 0);
 	}
 }

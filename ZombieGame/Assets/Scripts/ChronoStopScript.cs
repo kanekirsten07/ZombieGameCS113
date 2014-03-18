@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ChronoStopScript : MonoBehaviour {
@@ -17,7 +17,7 @@ public class ChronoStopScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll)
@@ -31,6 +31,8 @@ public class ChronoStopScript : MonoBehaviour {
 			
 			else
 			{
+				GameObject.Find ("PowerUpTimer").GetComponent<GUIText>().guiText.text = "";
+				GameObject.Destroy(gis.playerInventoryItem);
 				Quaternion facingUp = new Quaternion(0,0,0,1);
 				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconChronoStop"), gis.inventorySlotLocation, facingUp);
 			}

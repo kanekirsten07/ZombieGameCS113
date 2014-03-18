@@ -4,7 +4,7 @@ using System.Collections;
 public class Walker : MonoBehaviour {
 	
 	public float moveSpeed = 2f;		// The speed the enemy moves at.
-	public float HP = 1f;					// How many times the enemy can be hit before it dies.
+	public float HP = 3f;					// How many times the enemy can be hit before it dies.
 	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
 	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public AudioClip zombieGroan;		// An array of audioclips that can play when the enemy dies.
@@ -32,6 +32,7 @@ public class Walker : MonoBehaviour {
 	public bool jump = false;		
 	public GameInfoScript gis;
 	private float move = -1f;
+	public Vector3 lastPos;
 	
 
 	void Start()
@@ -41,7 +42,7 @@ public class Walker : MonoBehaviour {
 		mainLoop = (GameLoop) FindObjectOfType(typeof(GameLoop));
 		groundCheck = transform.Find("groundCheckWalker");
 		beginTimer();
-		AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 	}
 
 	void beginTimer()
@@ -72,11 +73,8 @@ public class Walker : MonoBehaviour {
 		if(timer2 > groanwait)
 		{
 			beginTimer2();
-			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
-		}
-
-
-		
+			//AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
+		}		
 	}
 	
 	void endTimer()
@@ -99,9 +97,16 @@ public class Walker : MonoBehaviour {
 
 		if (!gis.chronoStopActive)
 		{
-
-		// Set the enemy's velocity to moveSpeed in the x direction.
+			GetComponent<Animator>().enabled = true;
+			// Set the enemy's velocity to moveSpeed in the x direction.
 			walk();
+			lastPos = transform.position;
+		}
+		
+		else
+		{
+			transform.position = lastPos;
+			GetComponent<Animator>().enabled = false;
 		}
 
 		
@@ -112,7 +117,7 @@ public class Walker : MonoBehaviour {
 			Death ();
 		}
 
-		if(jump)
+		if(jump && !gis.chronoStopActive)
 		{
 			// Play a random jump audio clip.
 			//int i = Random.Range(0, jumpClips.Length);
@@ -188,16 +193,19 @@ public class Walker : MonoBehaviour {
 		{
 			Hurt (1);
 			//	Debug.Log("Boop1");
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 
-		else if(col.gameObject.tag == "missile")
+		else if(col.gameObject.tag == "missile" || col.gameObject.tag == "missileExplosion")
 		{
 			Hurt (2f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		
 		else if(col.gameObject.tag == "energy")
 		{
 			Hurt (0.01f);
+			AudioSource.PlayClipAtPoint(zombieGroan, transform.position);
 		}
 		//handleCollisionStuffs(col);
 		

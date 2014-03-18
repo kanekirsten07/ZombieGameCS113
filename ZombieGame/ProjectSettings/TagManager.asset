@@ -12,7 +12,7 @@ TagManager:
   - BombPickup
   - ExplosionFX
   - HealthBar
-  - 
+  - missileExplosion
   - Cop
   - Flood
   - Minion
@@ -20,6 +20,17 @@ TagManager:
   - Walker
   - Nurse
   - Vomit
+  - 
+  - pistol_bullet
+  - missile
+  - laser
+  - pistol
+  - energy
+  - shotgun
+  - machineGun
+  - machine gun
+  - missile launcher
+  - missileLauncher
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -34,9 +45,9 @@ TagManager:
   User Layer 10: Enemies
   User Layer 11: Pickups
   User Layer 12: Ground
-  User Layer 13: 
-  User Layer 14: 
-  User Layer 15: 
+  User Layer 13: weapon
+  User Layer 14: crate
+  User Layer 15: hover
   User Layer 16: 
   User Layer 17: 
   User Layer 18: 

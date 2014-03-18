@@ -4,13 +4,21 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
 	public Vector3 velocity;
-
+	private bool rotated;
 	float timer;
+
+	private Vector3 mousePos;
+	public GameObject zombini;
+	private bool flipped;
 
 	// Use this for initialization
 	void Start () {
+		zombini = GameObject.Find("Zombini");
+		flipped = false;
 
-		timer = 1000.0f;
+
+		rotated = true;
+		timer = 5.0f;
 	}
 	
 	// Update is called once per frame
@@ -20,17 +28,23 @@ public class Bullet : MonoBehaviour {
 
 		if (timer <= 0.0f)
 				GameObject.Destroy (this.gameObject);
-		
-		transform.Translate(velocity*5);
 
-		// Debug.Log ("velocity= "+velocity);
-	
-		// float angle = ((Mathf.Atan2 (velocity.y, velocity.x)* Mathf.Rad2Deg));
+		float mag = Vector3.Magnitude(velocity);
 
-		// transform.rotation = Quaternion.Euler (0, 0, angle); 
+		if(mag < 1.0f )
+		{
+			velocity.z = 0;
+			velocity.Normalize();
+			velocity.z = 1;
+			velocity += velocity;
+		}
 
-		// Debug.Log ("transform.rotation = "+transform.rotation);
-		// Debug.Log ("degrees= " + Mathf.Atan2 (velocity.y, velocity.x) * Mathf.Rad2Deg);
+		transform.Translate(velocity*2);
+
+		if(rotated)
+			rotate();
+
+
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
@@ -40,6 +54,45 @@ public class Bullet : MonoBehaviour {
 			GameObject.Destroy(coll.gameObject);
 			GameObject.Destroy(this.gameObject);
 		}
+
+		if (coll.gameObject.name.Equals("Ground"))
+		{
+			GameObject.Destroy(this.gameObject);
+		}
+
+		if (coll.gameObject.layer.Equals(12) || coll.gameObject.layer.Equals(10))
+		{
+			GameObject.Destroy(this.gameObject);
+		}
 	}
-	
+
+
+	void rotate()
+	{
+		mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+
+		if (transform.position.x < mousePos.x)
+		{
+			Vector3 flip = transform.localScale;
+			flip.x *= -1;
+			transform.localScale = flip;
+		}
+		
+
+		if(mousePos.x > transform.position.x)
+			transform.eulerAngles = 
+				new Vector3(0,0,Mathf.Atan2((mousePos.y - transform.position.y),
+				                            (mousePos.x - transform.position.x))*Mathf.Rad2Deg);
+		else
+			transform.eulerAngles = 
+				new Vector3(0,0,Mathf.Atan2((mousePos.y - transform.position.y),
+				                            (mousePos.x - transform.position.x))*Mathf.Rad2Deg + 180);
+		
+		
+		
+		rotated = false;
+	}
+
+
+
 }

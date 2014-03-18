@@ -8,7 +8,7 @@ public class shoot_shotgun : MonoBehaviour {
 	private int framePassed = 0;
 	public int angle; // in degrees
 	public int number_of_bullets;
-
+	public AudioClip sound;
 	public int currentAmmo;
 	public int startingAmmo;
 
@@ -19,7 +19,7 @@ public class shoot_shotgun : MonoBehaviour {
 		gis = (GameInfoScript)GameObject.Find("GameWorld").GetComponent<GameInfoScript>() as GameInfoScript;
 		currentAmmo = startingAmmo = 10;
 
-		angle = 2;
+		angle = 5;
 		number_of_bullets = 7;
 		limit_shots_per_sec = 1;
 	}
@@ -51,18 +51,30 @@ public class shoot_shotgun : MonoBehaviour {
 	
 	void fire()
 	{
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+
 		currentAmmo--;
 
-		Vector3 spawnLocation = this.transform.position;
-
-		// if(facingRight)	spawnLocation += (2 * Vector3.right);
-		// else 			spawnLocation += (2 * Vector3.left);
-
-		spawnLocation.z = Camera.main.ScreenToWorldPoint (Input.mousePosition).z;
-
+		AudioSource.PlayClipAtPoint (sound, transform.position);
+		
+		GameObject zombini = GameObject.Find ("Zombini");
+		
+		bool  temp = zombini.GetComponent<ZombiniController>().facingRight;
+		
+		Vector3 spawnLocation = GameObject.Find("sphere_shotgun").transform.position;
 
 		// instantiate 7 bullets
-		Vector3 init_vector = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z)).normalized;
+		// Vector3 init_vector = (Camera.main.ScreenToWorldPoint (Input.mousePosition) - new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z)).normalized;
+		Vector3 init_vector;
+		Vector3 temp2 = new Vector3(1,0,2);
+		Vector3 temp3 = new Vector3(-1,0,2);
+		
+		if(mousePos.x > transform.position.x)
+		{
+			init_vector = temp2;
+		}
+		else
+			init_vector = temp3;
 
 		// create first vector, call this depending on how many bullets there are
 		init_vector = Quaternion.AngleAxis (angle, Vector3.back) * init_vector;

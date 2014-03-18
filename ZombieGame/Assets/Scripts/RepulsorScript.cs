@@ -26,7 +26,14 @@ public class RepulsorScript : MonoBehaviour {
 				gis.powerUpTimer += gis.powerUpDuration;
 			
 			else
-				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconRepulsor"), gis.inventorySlotLocation, transform.rotation);
+			{
+				GameObject.Find ("PowerUpTimer").GetComponent<GUIText>().guiText.text = "";
+				GameObject.Destroy(gis.playerInventoryItem);
+				Quaternion facingUp = new Quaternion(0,0,0,1);
+				gis.playerInventoryItem = (GameObject)Instantiate(Resources.Load("Icons/IconRepulsor"), gis.inventorySlotLocation, facingUp);
+
+
+			}
 			
 			GameObject.Destroy(this.gameObject);
 		}

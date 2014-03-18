@@ -5,7 +5,7 @@ using System.Collections;
 public class ZombiniController : MonoBehaviour {
 
 	public float maxSpeed = 10f;
-	private bool facingRight = true;
+	public bool facingRight = true;
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public bool jump = false;				// Condition for whether the player should jump.
 	Animator anim;
@@ -36,7 +36,8 @@ public class ZombiniController : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0) && canShoot) 
 		{
-			fire ();
+			// Debug.Log("=======================Zombini====================================");
+			//fire ();
 			is_Shooting = true;
 		}
 		if(Input.GetMouseButtonUp(0))
